@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://primekortingscode.nl/schemas/deal.schema.json",
+  "title": "Deal",
+  "description": "An offer without a code — one click through to the store (`redirectUrl`).",
+  "type": "object",
+  "required": [
+    "id", "slug", "title", "type", "storeId", "categoryIds",
+    "redirectUrl", "isVerified", "isFeatured", "createdAt", "updatedAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "type": { "type": "string", "enum": ["deal"] },
+    "storeId": { "type": "string", "minLength": 1 },
+    "categoryIds": { "type": "array", "items": { "type": "string" } },
+    "redirectUrl": {
+      "type": "string",
+      "pattern": "^https?://",
+      "description": "Affiliate/store destination. Data-driven only — never hardcoded in UI."
+    },
+    "isVerified": { "type": "boolean" },
+    "isFeatured": { "type": "boolean" },
+    "discountLabel": { "type": "string" },
+    "priceFrom": { "type": ["string", "null"], "description": "Formatted price hint, e.g. '€ 12,99'." },
+    "oldPrice": { "type": ["string", "null"] },
+    "termsAndConditions": { "type": "string" },
+    "usageCount": { "type": "integer", "minimum": 0 },
+    "startsAt": { "type": ["string", "null"], "format": "date-time" },
+    "expiresAt": { "type": ["string", "null"], "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}
