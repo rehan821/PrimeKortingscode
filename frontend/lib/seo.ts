@@ -24,7 +24,7 @@ interface BuildMetadataOptions {
 }
 
 const OG_LOCALE: Record<Locale, string> = { nl: "nl_NL", en: "en_GB" };
-const DEFAULT_OG_IMAGE = "/og-default.svg";
+const DEFAULT_OG_IMAGE = "/og-default.png";
 
 /**
  * Builds complete page metadata: title, description, canonical URL,

@@ -27,9 +27,7 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    // Blog covers are locally generated static SVGs (no user input).
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Local, generated raster assets only — SVG uploads stay disabled.
   },
   async redirects() {
     return [

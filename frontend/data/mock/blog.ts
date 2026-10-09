@@ -27,7 +27,7 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Zie je een code die niet meer werkt? Laat het ons weten via de contactpagina. Zo houden we het overzicht voor iedereen accuraat.</p>`,
     publishedAt: "2026-09-18T10:00:00.000Z",
     updatedAt: "2026-09-18T10:00:00.000Z",
-    coverImage: "/blog/kortingscode-vinden.svg",
+    coverImage: "/images/blog/kortingscode-vinden.png",
   },
   {
     id: "b-002",
@@ -52,7 +52,7 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Acties en retourrecht gaan niet altijd samen. Controleer de voorwaarden, zodat je geen cadeau koopt dat je niet kunt terugbrengen.</p>`,
     publishedAt: "2026-09-26T10:00:00.000Z",
     updatedAt: "2026-09-26T10:00:00.000Z",
-    coverImage: "/blog/black-friday.svg",
+    coverImage: "/images/blog/black-friday.png",
   },
   {
     id: "b-003",
@@ -76,7 +76,7 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Ook buitenlanders concurreren scherp. Vergelijk daarom altijd de totale prijs: product, bezorgkosten én eventuele korting.</p>`,
     publishedAt: "2026-10-01T10:00:00.000Z",
     updatedAt: "2026-10-01T10:00:00.000Z",
-    coverImage: "/blog/nederlandse-webwinkels.svg",
+    coverImage: "/images/blog/nederlandse-webwinkels.png",
   },
   {
     id: "b-004",
@@ -100,7 +100,7 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Zie je een mooie deal? Zet een melding aan zodat je toeslaat wanneer de prijs daalt in plaats van wanneer jij eraan denkt.</p>`,
     publishedAt: "2026-10-04T10:00:00.000Z",
     updatedAt: "2026-10-04T10:00:00.000Z",
-    coverImage: "/blog/besparen-reizen.svg",
+    coverImage: "/images/blog/besparen-reizen.png",
   },
   {
     id: "b-005",
@@ -124,7 +124,7 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Een simpele prijsvergelijker of browser-extensie vertelt je direct of je nu toeslaat of nog even wacht.</p>`,
     publishedAt: "2026-10-06T10:00:00.000Z",
     updatedAt: "2026-10-06T10:00:00.000Z",
-    coverImage: "/blog/echte-aanbieding.svg",
+    coverImage: "/images/blog/echte-aanbieding.png",
   },
   {
     id: "b-006",
@@ -146,6 +146,6 @@ export const mockBlogPosts: BlogPost[] = [
 <p>Buy the offer only if it is something you would have bought anyway — otherwise you are spending, not saving.</p>`,
     publishedAt: "2026-09-22T10:00:00.000Z",
     updatedAt: "2026-09-22T10:00:00.000Z",
-    coverImage: "/blog/grocery-savings.svg",
+    coverImage: "/images/blog/grocery-savings.png",
   },
 ];

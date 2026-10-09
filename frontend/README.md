@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PrimeKortingscode — frontend
 
-## Getting Started
+Next.js (App Router) + TypeScript + Tailwind CSS frontend for **PrimeKortingscode**, a
+Dutch-first coupon & deals platform. See the [root README](../README.md) for project scope,
+architecture and the backend contract.
 
-First, run the development server:
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev        # start the dev server (http://localhost:3000)
+npm run build      # production build
+npm run start      # serve the production build
+npm run lint       # eslint (flat config)
+npm run typecheck  # tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy the root `.env.example` to `.env.local` before running. All secrets/config are read from
+there and `config/site.ts` — never hardcoded.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Routing & i18n
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Dutch (default)** lives at the root: `/winkels`, `/kortingscodes`, `/deals`, `/blog`.
+* **English** lives under `/en`: `/en/stores`, `/en/coupons`, `/en/deals`, `/en/blog`.
+* Both locales share one internal tree, `app/[locale]/…`. The public Dutch URLs are rewritten
+  onto `/nl/…` in `next.config.ts` (`beforeFiles`), and direct `/nl/…` requests are permanently
+  redirected back to the public URLs.
+* Locale segments are guarded: Dutch-named folders call `notFound()` for `locale !== "nl"` (and
+  vice-versa), so the two languages never leak into each other.
+* All user-facing strings come from `i18n/nl.json` / `i18n/en.json`. Components stay
+  dictionary-driven; `nl.json` is the source of truth for the `Dictionary` type.
 
-## Learn More
+## Data flow
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/[locale]/…        route files: params, generateMetadata, generateStaticParams
+        ↓
+features/…            page-level composition (server components)
+        ↓
+services/…            the ONLY layer that reads data (typed, locale-aware, expiry-filtered)
+        ↓
+data/mock/…           development mock data  →  future WordPress/REST API
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Components never call an API directly. Swapping mock data for a real backend means editing one
+file per domain; the UI and types stay unchanged.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Rendering
 
-## Deploy on Vercel
+* Listing pages are **Partial Prerender** (`◐`): a static header shell streams a filtered grid
+  inside `<Suspense>`. Search, sort and pagination are real, crawlable URLs read from
+  `searchParams`.
+* Detail pages are **statically generated** (`○`) from `generateStaticParams`, with `"use cache"`
+  on time-dependent service readers.
+* Unmatched single-segment paths and unknown detail slugs are rewritten by `proxy.ts` to a real,
+  server-rendered localized 404 (`app/global-not-found.tsx`, `app/[locale]/not-found.tsx`).
+* SEO: per-page `generateMetadata` (canonical + `hreflang`), JSON-LD, `app/sitemap.ts` and
+  `app/robots.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Assets
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`public/og-default.png` and `public/images/blog/*.png` are generated raster assets (Open Graph +
+article covers). SVG uploads are intentionally disabled in `next.config.ts`.
