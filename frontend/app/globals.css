@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   PrimeKortingscode design tokens
+   Premium, trustworthy, conversion-focused. Blue = trust, orange = action.
+--------------------------------------------------------------------------- */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+
+  /* Neutrals — slightly blue-tinted for a cool, premium feel */
+  --color-ink-950: #070e1a;
+  --color-ink-900: #0c1626;
+  --color-ink-800: #16233a;
+  --color-ink-700: #27364f;
+  --color-ink-600: #3d4d68;
+  --color-ink-500: #5a6b85;
+  --color-ink-400: #8494ac;
+  --color-ink-300: #b4c0d1;
+  --color-ink-200: #d9e0ea;
+  --color-ink-100: #edf1f6;
+  --color-ink-50: #f6f8fb;
+
+  /* Brand — trust blue */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dce8ff;
+  --color-brand-200: #bcd4ff;
+  --color-brand-300: #8fb6ff;
+  --color-brand-400: #5b90ff;
+  --color-brand-500: #2e6bff;
+  --color-brand-600: #1651f0;
+  --color-brand-700: #0f3fd1;
+  --color-brand-800: #1235a8;
+  --color-brand-900: #142f84;
+
+  /* Accent — action orange (CTAs, savings) */
+  --color-accent-50: #fff4ec;
+  --color-accent-100: #ffe6d5;
+  --color-accent-200: #ffc9aa;
+  --color-accent-300: #ffa474;
+  --color-accent-400: #ff8042;
+  --color-accent-500: #ff6a1f;
+  --color-accent-600: #f04e06;
+  --color-accent-700: #c73b05;
+  --color-accent-800: #9e310b;
+  --color-accent-900: #7f2c0d;
+
+  /* Semantic */
+  --color-success-50: #e7f7f1;
+  --color-success-100: #c9eedf;
+  --color-success-500: #0e9f6e;
+  --color-success-600: #087f5b;
+  --color-success-700: #066648;
+
+  --color-danger-50: #feedec;
+  --color-danger-100: #fbd9d7;
+  --color-danger-500: #e5484d;
+  --color-danger-600: #d13438;
+
+  --shadow-card: 0 1px 2px rgb(12 22 38 / 0.05), 0 10px 30px -18px rgb(12 22 38 / 0.25);
+  --shadow-pop: 0 12px 40px -12px rgb(12 22 38 / 0.28);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: #fff;
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-100);
+    color: var(--color-brand-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Horizontal page shell — one place controls gutters at every breakpoint */
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 40rem) {
+    .shell {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3.5rem;
+    z-index: 80;
+    border-radius: 0.5rem;
+    background-color: var(--color-brand-700);
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  /* Editorial article body (blog detail) */
+  .article-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-700);
+  }
+  .article-body > * + * {
+    margin-top: 1.1em;
+  }
+  .article-body h2 {
+    margin-top: 2.2em;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-ink-900);
+  }
+  .article-body h3 {
+    margin-top: 1.8em;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-ink-900);
+  }
+  .article-body a {
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .article-body a:hover {
+    color: var(--color-brand-800);
+  }
+  .article-body ul,
+  .article-body ol {
+    padding-left: 1.25rem;
+  }
+  .article-body ul {
+    list-style: disc;
+  }
+  .article-body ol {
+    list-style: decimal;
+  }
+  .article-body li + li {
+    margin-top: 0.5em;
+  }
+  .article-body strong {
+    color: var(--color-ink-900);
+  }
 }

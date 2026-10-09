@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "siteName": "PrimeKortingscode",
+    "tagline": "Coupon codes, deals & offers",
+    "defaultDescription": "Find the latest coupon codes, promotions and deals from popular online stores. Checked daily — save instantly at bol.com, Zalando, Coolblue and more."
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "viewAll": "View all",
+    "home": "Home",
+    "search": "Search",
+    "searchPlaceholder": "Search for a store, category or code",
+    "clear": "Clear",
+    "verified": "Verified",
+    "unverified": "Checking",
+    "demoNotice": "Demo environment — offers and codes are fictional.",
+    "expires": "Expires",
+    "expiresToday": "Expires today",
+    "expired": "Expired",
+    "expiresUnknown": "No end date",
+    "daysLeft": "{n} days left",
+    "oneDayLeft": "1 day left",
+    "results": "Results",
+    "noResults": "Nothing found",
+    "new": "New",
+    "featured": "Featured"
+  },
+  "buttons": {
+    "getCode": "Show code",
+    "showCode": "Reveal code",
+    "copyCode": "Copy code",
+    "copied": "Copied!",
+    "copyFailed": "Copying failed — select the code manually",
+    "goToStore": "Go to {store}",
+    "getDeal": "View deal",
+    "openDeal": "View deal",
+    "close": "Close",
+    "visitStore": "Visit store",
+    "readMore": "Read more",
+    "backHome": "Back to home",
+    "browseStores": "Browse stores",
+    "loadMore": "Load more"
+  },
+  "header": {
+    "brandTagline": "Coupon codes & deals",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "language": "Language",
+    "searchAria": "Search offers",
+    "navLabel": "Menu",
+    "switchTo": { "en": "Switch to English", "nl": "Switch to Dutch" },
+    "nav": {
+      "home": "Home",
+      "stores": "Stores",
+      "categories": "Categories",
+      "coupons": "Coupons",
+      "deals": "Deals",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  },
+  "footer": {
+    "aboutTitle": "About PrimeKortingscode",
+    "aboutText": "PrimeKortingscode brings together coupon codes, promotions and deals from well-known online stores in one clear place, so you can find a working code before you check out.",
+    "discoverTitle": "Discover",
+    "categoriesTitle": "Popular categories",
+    "helpTitle": "Help & info",
+    "contact": "Contact",
+    "privacy": "Privacy policy",
+    "legalTitle": "Legal",
+    "disclaimer": "Coupon codes and deals come from stores and partners. Always check the terms at the store.",
+    "rights": "All rights reserved.",
+    "demoNote": "This is a demo frontend with fictional data."
+  },
+  "newsletter": {
+    "title": "Be the first to save",
+    "description": "Get the best coupon codes and deals in your inbox. No spam, unsubscribe any time.",
+    "placeholder": "you@email.com",
+    "submit": "Subscribe",
+    "consent": "By subscribing you agree to our privacy policy.",
+    "success": "Thanks! Your subscription was received (demo).",
+    "error": "Please enter a valid email address.",
+    "demoHint": "Demo — no email is sent."
+  },
+  "filters": {
+    "sortLabel": "Sort by",
+    "popular": "Popular",
+    "newest": "Newest",
+    "expiring": "Expiring soon",
+    "title": "A–Z",
+    "all": "All",
+    "filterLabel": "Filters"
+  },
+  "pagination": {
+    "label": "Pagination",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "current": "Current page"
+  },
+  "breadcrumb": {
+    "label": "Breadcrumb"
+  },
+  "alphabet": {
+    "label": "Filter by first letter"
+  },
+  "home": {
+    "hero": {
+      "badge": "Codes checked daily",
+      "title": "Save at your favourite online stores",
+      "subtitle": "From fashion to electronics: find working coupon codes and sharp deals, gathered in one clear overview.",
+      "popular": "Popular:"
+    },
+    "storesTitle": "Popular stores",
+    "storesSubtitle": "The most visited online stores right now",
+    "categoriesTitle": "Popular categories",
+    "categoriesSubtitle": "Jump straight to the offers that suit you",
+    "couponsTitle": "Popular coupon codes",
+    "couponsSubtitle": "The codes used most often today",
+    "dealsTitle": "Latest deals",
+    "dealsSubtitle": "Freshly added — claim with one click, no code needed",
+    "blogTitle": "Saving tips & inspiration",
+    "blogSubtitle": "Articles to get more out of your purchases"
+  },
+  "stores": {
+    "title": "All stores",
+    "description": "Browse every store with coupon codes and deals, from A to Z. Search by name and start saving right away.",
+    "searchPlaceholder": "Search for a store",
+    "popularTitle": "Popular stores",
+    "allTitle": "All stores",
+    "empty": "No stores found. Try a different search term.",
+    "offers": "Active codes",
+    "offersOne": "1 active code",
+    "offersMany": "{n} active codes",
+    "metaTitle": "Stores with coupon codes & deals"
+  },
+  "store": {
+    "about": "About {store}",
+    "couponsTitle": "Coupon codes",
+    "couponsIntro": "Use one of these codes at checkout.",
+    "dealsTitle": "Deals",
+    "dealsIntro": "Offers you claim with one click — no code needed.",
+    "categoriesTitle": "Categories",
+    "relatedTitle": "Similar stores",
+    "faqTitle": "Frequently asked questions about {store}",
+    "visit": "Go to {store}",
+    "noCoupons": "There are currently no active coupon codes for this store.",
+    "noDeals": "There are currently no active deals for this store.",
+    "activeOffers": "Active offers"
+  },
+  "categories": {
+    "title": "All categories",
+    "description": "Discover stores, coupon codes and deals by category — from fashion and electronics to travel and energy.",
+    "searchPlaceholder": "Search for a category",
+    "empty": "No categories found. Try a different search term.",
+    "storesCount": "stores",
+    "codesCount": "codes",
+    "metaTitle": "Categories with coupon codes & deals"
+  },
+  "category": {
+    "about": "About {category}",
+    "storesTitle": "Stores in this category",
+    "couponsTitle": "Coupon codes",
+    "dealsTitle": "Deals",
+    "relatedTitle": "Similar categories",
+    "noStores": "No stores in this category.",
+    "noCoupons": "No active coupon codes in this category.",
+    "noDeals": "No active deals in this category."
+  },
+  "coupons": {
+    "title": "Coupon codes",
+    "description": "All current coupon codes for Dutch and international online stores. View the code, copy it and save at checkout.",
+    "empty": "No coupon codes found with these filters.",
+    "howToTitle": "How a coupon code works",
+    "howToSteps": {
+      "step1": "Pick a code and click “Show code”.",
+      "step2": "Copy the code with one click.",
+      "step3": "Paste it in the cart and save."
+    },
+    "termsTitle": "Terms",
+    "aboutTitle": "About this code",
+    "usedTimes": "Used {n} times",
+    "metaTitle": "Coupon codes & promo codes"
+  },
+  "coupon": {
+    "modalTitle": "Your coupon code",
+    "modalSubtitle": "Click the code to copy it",
+    "codeLabel": "Coupon code",
+    "dealNotice": "This is a deal — no code required."
+  },
+  "deals": {
+    "title": "Deals & offers",
+    "description": "Discover the latest deals without a coupon code. One click and you go straight to the offer in the online store.",
+    "empty": "No deals found with these filters.",
+    "metaTitle": "Deals & offers"
+  },
+  "deal": {
+    "aboutTitle": "About this deal",
+    "termsTitle": "Terms"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Saving tips, buying guides and the latest news on shopping, discounts and smart purchases.",
+    "readMore": "Read more",
+    "by": "By {author}",
+    "minRead": "{n} min read",
+    "published": "Published",
+    "tags": "Tags",
+    "related": "Related articles",
+    "latest": "Latest articles",
+    "empty": "No articles available yet.",
+    "backToList": "Back to the blog"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Questions, suggestions or a report about a code that doesn't work? Get in touch — we normally reply within one business day.",
+    "emailTitle": "Email",
+    "responseTitle": "Response time",
+    "responseValue": "Within 1 business day",
+    "formTitle": "Send a message",
+    "name": "Name",
+    "email": "Email address",
+    "message": "Message",
+    "submit": "Send",
+    "success": "Thanks! Your message was received (demo).",
+    "errorRequired": "Please fill in this field.",
+    "errorEmail": "Please enter a valid email address.",
+    "demoHint": "Demo — the form does not send anything yet.",
+    "topicsTitle": "What can we help you with?",
+    "topics": [
+      "Report a coupon code that doesn't work",
+      "Suggest a new store or code",
+      "Partnerships or advertising",
+      "Questions about privacy or data"
+    ]
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "description": "Read how PrimeKortingscode handles your personal data, cookies and external links.",
+    "lastUpdated": "Last updated",
+    "sections": [
+      {
+        "heading": "What data we process",
+        "body": "PrimeKortingscode processes as little data as possible. You can browse our pages without creating an account. We only process personal data such as your name and email address when you provide it yourself, for example through the contact form or the newsletter."
+      },
+      {
+        "heading": "Cookies and analytics",
+        "body": "We use functional cookies to keep the site working and, with your consent, analytical cookies to understand which pages and offers are used most. You can change your preferences at any time through your browser settings."
+      },
+      {
+        "heading": "External links and stores",
+        "body": "Coupon codes and deals link through to the store's website. Once you click such a link, the privacy policy of that store applies. We have no control over how external parties handle your data; review their policy before sharing any information."
+      },
+      {
+        "heading": "Newsletter",
+        "body": "If you subscribe to the newsletter, we use your email address only to send you the best coupon codes and deals. Every email includes a link to unsubscribe immediately, after which we remove your details from our list."
+      },
+      {
+        "heading": "Your rights",
+        "body": "You have the right to ask which data we hold about you, to have it corrected or deleted. Contact us through the contact page to do so; we normally reply within one business day."
+      }
+    ]
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has moved. Go back home or search for a store or category directly.",
+    "hint": "Try:"
+  }
+}
