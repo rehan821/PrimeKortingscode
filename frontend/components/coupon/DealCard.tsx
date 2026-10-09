@@ -84,21 +84,20 @@ export function DealCard({ deal, locale, dict, featured = false }: DealCardProps
 
   // Default variant
   return (
-    <article className="flex h-full flex-col rounded-lg border border-ink-200 bg-white shadow-card transition hover:border-brand-300 hover:shadow-pop">
-      {/* Brand bar */}
-      <div className="flex items-center justify-between border-b border-ink-100 bg-white px-4 py-3">
+    <article className="offer-surface flex h-full flex-col overflow-hidden transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-pop">
+      <div className="offer-card-brand" style={deal.store.brandColor ? { borderTopColor: deal.store.brandColor } : undefined}>
         <Link href={storeHref} className="group/store flex min-w-0 items-center gap-2.5">
-          <span className="truncate text-sm font-bold text-ink-900 group-hover/store:text-brand-700">
+          <span className="offer-card-brand-name truncate group-hover/store:text-brand-700">
             {deal.store.name}
           </span>
         </Link>
         {deal.isVerified ? (
-          <VerifiedBadge text={dict.common.verified} className="shrink-0" />
+          <VerifiedBadge text={dict.common.verified} className="absolute right-3 top-3 shrink-0" />
         ) : null}
       </div>
 
       {/* Content */}
-        <div className="flex flex-1 flex-col p-4">
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-2">
           {deal.discountLabel ? (
             <span className="discount-pill text-xs font-black">

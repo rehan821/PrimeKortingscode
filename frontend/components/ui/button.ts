@@ -4,7 +4,7 @@ export type ButtonVariant = "primary" | "accent" | "secondary" | "outline" | "gh
 export type ButtonSize = "sm" | "md" | "lg";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50 text-center";
+  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50 text-center";
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary: "bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800",

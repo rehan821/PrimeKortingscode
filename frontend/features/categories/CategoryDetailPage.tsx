@@ -16,6 +16,7 @@ import { CategoryIcon } from "@/components/category/CategoryIcon";
 import { StoreCard } from "@/components/store/StoreCard";
 import { CouponCard } from "@/components/coupon/CouponCard";
 import { DealCard } from "@/components/coupon/DealCard";
+import { MerchantOfferRow } from "@/components/coupon/MerchantOfferRow";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -61,85 +62,55 @@ export async function CategoryDetailPage({ locale, dict, slug }: CategoryDetailP
           ]}
         />
 
-        <header className="flex flex-col gap-4 rounded-xl border border-ink-200 bg-white p-5 shadow-card sm:flex-row sm:items-center sm:p-6">
-          <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
-            <CategoryIcon name={category.icon} size={30} />
-          </span>
-          <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">{category.name}</h1>
-            {category.description ? (
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-600">
-                {category.description}
-              </p>
-            ) : null}
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Badge variant="brand">
-                {category.storeCount ?? 0} {dict.categories.storesCount}
-              </Badge>
-              <Badge variant="accent">
-                {category.couponCount ?? 0} {dict.categories.codesCount}
-              </Badge>
-            </div>
-          </div>
+        <header className="border-b border-ink-100 pb-5 pt-2">
+          <h1 className="text-3xl font-black tracking-tight text-ink-950 sm:text-4xl lg:text-[2.75rem]">{category.name}</h1>
+          <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-ink-600">{locale === "nl" ? `Bekijk aanbiedingen in ${category.name}` : `Browse offers in ${category.name}`}</p>
         </header>
 
-        <section className="mt-10" aria-labelledby="category-stores">
-          <SectionHeading id="category-stores" title={dict.category.storesTitle} />
-          {stores.length === 0 ? (
-            <EmptyState title={dict.common.noResults} description={dict.category.noStores} />
-          ) : (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-              {stores.map((store) => (
-                <StoreCard key={store.id} store={store} locale={locale} dict={dict} />
-              ))}
-            </div>
-          )}
-        </section>
+        <div className="mt-7 grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-10">
+          <aside className="space-y-7">
+            <section aria-labelledby="category-about">
+              <h2 id="category-about" className="text-sm font-extrabold uppercase tracking-wide text-ink-900">{locale === "nl" ? `Over ${category.name}` : `About ${category.name}`}</h2>
+              <p className="mt-3 text-sm leading-6 text-ink-700">{category.description}</p>
+              <p className="mt-3 text-xs leading-5 text-ink-500">{locale === "nl" ? "Aanbiedingen en kortingscodes kunnen per winkel verschillen. Bekijk altijd de voorwaarden bij de aanbieder." : "Offers and coupon terms can vary by store. Check the merchant’s terms before purchasing."}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Badge variant="brand">{category.storeCount ?? 0} {dict.categories.storesCount}</Badge>
+                <Badge variant="accent">{category.couponCount ?? 0} {dict.categories.codesCount}</Badge>
+              </div>
+            </section>
+            {related.length > 0 ? <nav aria-label={dict.category.relatedTitle}>
+              <h2 className="text-sm font-extrabold uppercase tracking-wide text-ink-900">{dict.category.relatedTitle}</h2>
+              <ul className="mt-3 space-y-2">
+                {related.map((item) => <li key={item.id}><Link href={pathFor(locale, "category", item.slug)} className="inline-flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700"><CategoryIcon name={item.icon} size={16} />{item.name}</Link></li>)}
+              </ul>
+            </nav> : null}
+          </aside>
 
-        <section className="mt-10" aria-labelledby="category-coupons">
-          <SectionHeading id="category-coupons" title={dict.category.couponsTitle} />
-          {coupons.length === 0 ? (
-            <EmptyState title={dict.common.noResults} description={dict.category.noCoupons} />
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {coupons.map((coupon) => (
-                <CouponCard key={coupon.id} coupon={coupon} locale={locale} dict={dict} />
-              ))}
-            </div>
-          )}
-        </section>
+          <div className="min-w-0 space-y-10">
+            {deals.length > 0 || coupons.length > 0 ? <section aria-labelledby="category-top-deals">
+              <SectionHeading id="category-top-deals" title={locale === "nl" ? "Vandaag populaire deals" : "Today’s top deals"} />
+              <div className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
+                {[...deals.slice(0, 2), ...coupons.slice(0, 2)].map((offer) => <MerchantOfferRow key={offer.id} offer={offer} locale={locale} dict={dict} />)}
+              </div>
+            </section> : null}
 
-        <section className="mt-10" aria-labelledby="category-deals">
-          <SectionHeading id="category-deals" title={dict.category.dealsTitle} />
-          {deals.length === 0 ? (
-            <EmptyState title={dict.common.noResults} description={dict.category.noDeals} />
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {deals.map((deal) => (
-                <DealCard key={deal.id} deal={deal} locale={locale} dict={dict} />
-              ))}
-            </div>
-          )}
-        </section>
+            <section aria-labelledby="category-stores">
+              <SectionHeading id="category-stores" title={dict.category.storesTitle} />
+              {stores.length === 0 ? <EmptyState title={dict.common.noResults} description={dict.category.noStores} /> : <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">{stores.map((store) => <StoreCard key={store.id} store={store} locale={locale} dict={dict} />)}</div>}
+            </section>
 
-        {related.length > 0 ? (
-          <section className="mt-10" aria-labelledby="category-related">
-            <SectionHeading id="category-related" title={dict.category.relatedTitle} />
-            <ul className="flex flex-wrap gap-2">
-              {related.map((item) => (
-                <li key={item.id}>
-                  <Link
-                    href={pathFor(locale, "category", item.slug)}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-ink-200 bg-white px-3.5 py-1.5 text-sm font-semibold text-ink-700 hover:border-brand-300 hover:text-brand-700"
-                  >
-                    <CategoryIcon name={item.icon} size={16} />
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
+            <section aria-labelledby="category-coupons">
+              <SectionHeading id="category-coupons" title={dict.category.couponsTitle} />
+              {coupons.length === 0 ? <EmptyState title={dict.common.noResults} description={dict.category.noCoupons} /> : <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{coupons.map((coupon) => <CouponCard key={coupon.id} coupon={coupon} locale={locale} dict={dict} />)}</div>}
+            </section>
+
+            <section aria-labelledby="category-deals">
+              <SectionHeading id="category-deals" title={dict.category.dealsTitle} />
+              {deals.length === 0 ? <EmptyState title={dict.common.noResults} description={dict.category.noDeals} /> : <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{deals.map((deal) => <DealCard key={deal.id} deal={deal} locale={locale} dict={dict} />)}</div>}
+            </section>
+          </div>
+        </div>
+
       </div>
     </>
   );

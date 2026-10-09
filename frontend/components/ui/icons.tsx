@@ -114,6 +114,14 @@ export const TagIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const StoreIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3.5 10.5h17l-1.4-6h-14.2l-1.4 6Z" />
+    <path d="M5 10.5V20h14v-9.5M9 20v-5.5h6V20" />
+    <path d="M3.5 10.5c0 1.2.9 2.2 2.1 2.2s2.1-1 2.1-2.2c0 1.2.9 2.2 2.1 2.2s2.1-1 2.1-2.2c0 1.2.9 2.2 2.1 2.2s2.1-1 2.1-2.2c0 1.2.9 2.2 2.1 2.2s2.1-1 2.1-2.2" />
+  </Icon>
+);
+
 export const MailIcon = (p: IconProps) => (
   <Icon {...p}>
     <rect x="3" y="5" width="18" height="14" rx="2" />

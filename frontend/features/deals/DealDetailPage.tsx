@@ -11,6 +11,7 @@ import { ExpiryIndicator } from "@/components/common/ExpiryIndicator";
 import { VerifiedBadge } from "@/components/common/VerifiedBadge";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getBrandForegroundColor } from "@/components/store/StoreLogo";
 
 interface DealDetailPageProps {
   locale: Locale;
@@ -50,18 +51,17 @@ export async function DealDetailPage({ locale, dict, slug }: DealDetailPageProps
           ]}
         />
 
-        <article className="mx-auto max-w-3xl">
-          <div className="flex items-center gap-3">
-            <div>
-              <p className="font-bold text-ink-900">{deal.store.name}</p>
-              <div className="mt-0.5 flex flex-wrap items-center gap-2">
+        <article className="offer-surface mx-auto max-w-4xl overflow-hidden">
+          <div className="offer-brand" style={{ backgroundColor: deal.store.brandColor }}>
+            <p className="offer-brand-name" style={{ color: getBrandForegroundColor(deal.store.brandColor) }}>{deal.store.name}</p>
+            <div className="absolute left-3 top-3 flex flex-wrap items-center gap-2">
                 {deal.isVerified ? <VerifiedBadge text={dict.common.verified} /> : null}
                 <ExpiryIndicator expiresAt={deal.expiresAt} locale={locale} dict={dict} />
-              </div>
             </div>
           </div>
 
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+          <div className="p-5 sm:p-8">
+          <h1 className="text-3xl font-black tracking-tight text-ink-950 sm:text-4xl">
             {deal.title}
           </h1>
           {deal.discountLabel || deal.priceFrom ? (
@@ -88,7 +88,7 @@ export async function DealDetailPage({ locale, dict, slug }: DealDetailPageProps
             <p className="mt-4 text-base leading-relaxed text-ink-600">{deal.description}</p>
           ) : null}
 
-          <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50/60 p-5">
+          <div className="mt-6 rounded-xl border border-ink-200 bg-ink-50 p-5 sm:p-6">
             <p className="text-sm font-bold text-ink-900">{dict.deal.aboutTitle}</p>
             <div className="mt-4">
               <GetDealButton
@@ -113,6 +113,7 @@ export async function DealDetailPage({ locale, dict, slug }: DealDetailPageProps
           ) : null}
 
           <p className="mt-6 text-xs text-ink-400">{dict.common.demoNotice}</p>
+          </div>
         </article>
 
         <section className="mt-10" aria-labelledby="deal-related">

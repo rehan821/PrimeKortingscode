@@ -21,21 +21,20 @@ export function CouponCard({ coupon, locale, dict }: CouponCardProps) {
   const couponHref = pathFor(locale, "coupon", coupon.slug);
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-ink-200 bg-white shadow-card transition-all hover:border-brand-300 hover:shadow-pop">
-      {/* Top band: store branding + verified badge */}
-      <div className="flex items-center gap-3 border-b border-ink-100 bg-white px-4 py-3">
-        <Link href={storeHref} className="flex min-w-0 items-center gap-2.5 transition-opacity hover:opacity-75">
-          <span className="truncate text-sm font-extrabold text-ink-900">
+    <article className="offer-surface group relative flex h-full flex-col overflow-hidden transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-pop">
+      <div className="offer-card-brand" style={coupon.store.brandColor ? { borderTopColor: coupon.store.brandColor } : undefined}>
+        <Link href={storeHref} className="flex min-w-0 items-center gap-2.5 transition-opacity hover:opacity-80">
+          <span className="offer-card-brand-name truncate">
             {coupon.store.name}
           </span>
         </Link>
         {coupon.isVerified ? (
-          <VerifiedBadge text={dict.common.verified} className="ml-auto shrink-0" />
+          <VerifiedBadge text={dict.common.verified} className="absolute right-3 top-3 shrink-0" />
         ) : null}
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-4">
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
         {/* Discount label + expiry */}
         <div className="flex min-h-7 flex-wrap items-center gap-2">
           {coupon.discountLabel ? (

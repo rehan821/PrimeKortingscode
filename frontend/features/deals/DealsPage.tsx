@@ -1,11 +1,12 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
 import { getDeals } from "@/services/deals";
+import { getPopularCategories } from "@/services/categories";
 import { pathFor } from "@/lib/routes";
 import { firstValue, parsePage, parseSort } from "@/lib/query";
 import { siteConfig } from "@/config/site";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { SearchForm } from "@/components/search/SearchForm";
 import { DealCard } from "@/components/coupon/DealCard";
 import { Pagination } from "@/components/common/Pagination";
@@ -28,9 +29,18 @@ async function DealResults({ locale, dict, searchParams }: DealsPageProps) {
   const basePath = pathFor(locale, "deals");
 
   const result = await getDeals({ locale, q, sort, page, perPage: siteConfig.pagination.deals });
+  const categories = await getPopularCategories(7, locale);
 
   return (
     <div className="space-y-6">
+      <nav aria-label={locale === "nl" ? "Populaire categorieën" : "Popular categories"} className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+        {categories.map((category) => (
+          <Link key={category.id} href={pathFor(locale, "category", category.slug)} className="shrink-0 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-bold text-ink-700 transition hover:border-brand-400 hover:text-brand-700">
+            {category.name}
+          </Link>
+        ))}
+      </nav>
+
       <SearchForm
         locale={locale}
         dict={dict}
@@ -85,8 +95,14 @@ async function DealResults({ locale, dict, searchParams }: DealsPageProps) {
 export function DealsPage({ locale, dict, searchParams }: DealsPageProps) {
   return (
     <>
-      <PageHeader title={dict.deals.title} description={dict.deals.description} />
-      <div className="shell py-8">
+      <header className="border-b border-[#ead6df] bg-[#f8e6ed]">
+        <div className="shell flex min-h-[220px] flex-col justify-center py-8 sm:min-h-[265px] sm:py-10">
+          <p className="text-xs font-extrabold uppercase tracking-[.18em] text-brand-800">{locale === "nl" ? "Shop & bespaar" : "Shop and save"}</p>
+          <h1 className="mt-2 max-w-3xl text-4xl font-black leading-[1.04] tracking-tight text-ink-950 sm:text-5xl lg:text-6xl">{dict.deals.title}</h1>
+          <p className="mt-3 max-w-2xl text-base leading-6 text-ink-700 sm:text-lg">{dict.deals.description}</p>
+        </div>
+      </header>
+      <div className="shell py-6 sm:py-8">
         <Suspense fallback={<ResultsSkeleton rows={6} />}>
           <DealResults locale={locale} dict={dict} searchParams={searchParams} />
         </Suspense>

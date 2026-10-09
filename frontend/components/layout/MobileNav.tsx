@@ -42,7 +42,7 @@ export function MobileNav({ locale, dict, items }: MobileNavProps) {
   const target = locale === "nl" ? "en" : "nl";
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}

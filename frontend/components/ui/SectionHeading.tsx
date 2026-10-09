@@ -48,7 +48,7 @@ export function HomeSectionHeading({
       <div>
         <h2
           id={id}
-          className={`text-2xl font-black tracking-tight sm:text-3xl ${
+          className={`text-xl font-black tracking-tight sm:text-2xl ${
             accent ? "text-accent-600" : "text-ink-900"
           }`}
         >
@@ -63,7 +63,7 @@ export function HomeSectionHeading({
       {href && viewAllLabel ? (
         <Link
           href={href}
-          className="inline-flex items-center gap-1.5 rounded-lg border-2 border-brand-600 bg-brand-600 px-4 py-2 text-sm font-bold text-white transition-all hover:border-brand-700 hover:bg-brand-700"
+          className="inline-flex items-center gap-1.5 border-b border-ink-900 pb-1 text-xs font-extrabold uppercase tracking-[.08em] text-ink-900 transition-colors hover:border-brand-700 hover:text-brand-700"
         >
           {viewAllLabel}
           <ArrowRightIcon size={14} />

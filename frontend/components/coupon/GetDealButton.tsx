@@ -25,7 +25,7 @@ export function GetDealButton({
   fallbackHref,
   storeName,
   dict,
-  variant = "accent",
+  variant = "secondary",
   size = "md",
   className,
 }: GetDealButtonProps) {

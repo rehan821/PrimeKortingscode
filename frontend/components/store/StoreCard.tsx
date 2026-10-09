@@ -26,14 +26,15 @@ export function StoreCard({ store, locale, dict, showUpdatedAt = false }: StoreC
   return (
     <Link
       href={pathFor(locale, "store", store.slug)}
-      className="group flex min-h-[96px] flex-col items-center justify-center gap-2 rounded-lg border border-ink-200 border-t-2 bg-white px-3 py-3 text-center transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card"
-      style={store.brandColor ? { borderTopColor: store.brandColor } : undefined}
+      className="group flex min-h-[112px] flex-col items-center justify-center gap-2 rounded-xl border border-ink-200 bg-white px-3 py-4 text-center transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card sm:min-h-[126px]"
     >
-      <div className="min-w-0 flex-1">
-        <h3 className="max-w-full truncate text-sm font-extrabold text-ink-900 group-hover:text-brand-700">
+      <div className="flex min-h-12 w-full items-center justify-center">
+        <h3 className="max-w-full truncate text-base font-black tracking-tight text-ink-900 group-hover:text-brand-700 sm:text-lg" style={store.brandColor ? { color: store.brandColor } : undefined}>
           {store.name}
         </h3>
-        <p className="text-[11px] font-medium text-ink-500">
+      </div>
+      <div className="text-[11px] font-medium text-ink-500">
+        <p>
           {showUpdatedAt && store.updatedAt
             ? `${locale === "nl" ? "Bijgewerkt" : "Updated"} ${formatDateShort(store.updatedAt, locale)}`
             : offers === 1

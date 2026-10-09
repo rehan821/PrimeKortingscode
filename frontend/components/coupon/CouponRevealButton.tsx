@@ -24,7 +24,7 @@ export function CouponRevealButton({
   locale,
   dict,
   expiryInfo,
-  variant = "accent",
+  variant = "secondary",
   size = "md",
   className,
 }: CouponRevealButtonProps) {

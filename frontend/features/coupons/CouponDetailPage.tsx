@@ -11,6 +11,7 @@ import { ExpiryIndicator } from "@/components/common/ExpiryIndicator";
 import { VerifiedBadge } from "@/components/common/VerifiedBadge";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getBrandForegroundColor } from "@/components/store/StoreLogo";
 
 interface CouponDetailPageProps {
   locale: Locale;
@@ -50,22 +51,19 @@ export async function CouponDetailPage({ locale, dict, slug }: CouponDetailPageP
           ]}
         />
 
-        <article className="mx-auto max-w-3xl">
-          {/* Store header with brand styling */}
-          <div className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
-            <div className="flex items-center gap-4 border-b border-ink-100 bg-ink-50 px-6 py-5">
-              <div className="min-w-0 flex-1">
-                <p className="text-lg font-black text-ink-900">{coupon.store.name}</p>
-                <div className="mt-1 flex flex-wrap items-center gap-2.5">
+        <article className="mx-auto max-w-4xl">
+          <div className="offer-surface overflow-hidden">
+            <div className="offer-brand" style={{ backgroundColor: coupon.store.brandColor }}>
+              <p className="offer-brand-name" style={{ color: getBrandForegroundColor(coupon.store.brandColor) }}>{coupon.store.name}</p>
+              <div className="absolute left-3 top-3 flex flex-wrap items-center gap-2.5">
                   {coupon.isVerified ? <VerifiedBadge text={dict.common.verified} /> : null}
                   <ExpiryIndicator expiresAt={coupon.expiresAt} locale={locale} dict={dict} />
-                </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="px-6 py-6 sm:px-8">
-              <h1 className="text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">
+            <div className="px-5 py-6 sm:px-8 sm:py-8">
+              <h1 className="text-3xl font-black tracking-tight text-ink-950 sm:text-4xl">
                 {coupon.title}
               </h1>
               {coupon.discountLabel ? (
@@ -78,7 +76,7 @@ export async function CouponDetailPage({ locale, dict, slug }: CouponDetailPageP
                 <p className="mt-5 text-base leading-relaxed text-ink-700">{coupon.description}</p>
               ) : null}
 
-              <div className="mt-8 rounded-lg border border-brand-200 bg-brand-50 p-5">
+              <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 sm:p-6">
                 <p className="text-base font-black text-ink-900">{dict.coupons.aboutTitle}</p>
                 <p className="mt-1.5 text-sm text-ink-600">{dict.coupon.modalSubtitle}</p>
                 <div className="mt-5">

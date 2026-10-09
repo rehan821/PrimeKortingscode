@@ -9,10 +9,7 @@ import { pathFor } from "@/lib/routes";
 import { interpolate } from "@/lib/date";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
-import { StoreCard } from "@/components/store/StoreCard";
-import { CouponCard } from "@/components/coupon/CouponCard";
-import { DealCard } from "@/components/coupon/DealCard";
-import { GetDealButton } from "@/components/coupon/GetDealButton";
+import { MerchantOfferRow } from "@/components/coupon/MerchantOfferRow";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { CategoryIcon } from "@/components/category/CategoryIcon";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -69,39 +66,55 @@ export async function StoreDetailPage({ locale, dict, slug }: StoreDetailPagePro
           ]}
         />
 
-        <header className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
-          <div className="border-b border-ink-100 bg-ink-50 px-6 py-5 sm:px-8">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
-              <div className="min-w-0 flex-1">
-                <h1 className="text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">
-                  {store.name}
-                </h1>
-                <p className="mt-2 flex items-center gap-2 text-base font-semibold text-save-700">
-                  <span className="inline-block h-2 w-2 rounded-full bg-save-500"></span>
-                  {interpolate(dict.stores.offersMany, { n: offers })}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Description and CTA */}
-          <div className="flex flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
-            <p className="flex-1 text-base leading-relaxed text-ink-700">
-              {store.description}
-            </p>
-            <div className="sm:w-52">
-              <GetDealButton
-                redirectUrl={store.websiteUrl}
-                fallbackHref={storePath}
-                storeName={store.name}
-                dict={dict}
-                className="w-full"
-              />
-            </div>
-          </div>
+        <header className="border-b border-ink-200 pb-5">
+          <h1 className="text-3xl font-black tracking-tight text-ink-950 sm:text-4xl lg:text-[2.75rem]">
+            {locale === "nl" ? `${store.name} kortingscodes & aanbiedingen` : `${store.name} Coupons & Promo Codes`}
+          </h1>
+          <p className="mt-2 text-sm text-ink-600">
+            {interpolate(dict.stores.offersMany, { n: offers })} · {locale === "nl" ? "Actuele aanbiedingen" : "Current offers"}
+          </p>
         </header>
 
-        {categories.length > 0 ? (
+        <div className="mt-6 grid gap-8 lg:grid-cols-[270px_minmax(0,1fr)] lg:gap-10">
+          <aside className="space-y-7">
+            <section aria-label={store.name} className="flex items-center gap-4 border-b border-ink-200 pb-6">
+              <div aria-hidden="true" className="flex size-20 shrink-0 items-center justify-center rounded-full border border-ink-200 bg-white text-2xl font-black text-brand-700 shadow-card sm:size-24">
+                {store.initials ?? store.name.slice(0, 1)}
+              </div>
+              <div>
+                <p className="font-extrabold text-ink-900">{store.name}</p>
+                <p className="mt-1 text-sm text-ink-600">{offers} {locale === "nl" ? "aanbiedingen" : "offers"}</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="store-about">
+              <h2 id="store-about" className="text-sm font-extrabold uppercase tracking-wide text-ink-900">{locale === "nl" ? `Over ${store.name}` : `About ${store.name}`}</h2>
+              <p className="mt-3 text-sm leading-6 text-ink-700">{store.description}</p>
+              <p className="mt-3 text-xs leading-5 text-ink-500">{locale === "nl" ? "Sommige links zijn affiliate links. Aanbiedingsvoorwaarden worden bepaald door de winkel." : "Some links are affiliate links. Offer terms are set by the merchant."}</p>
+            </section>
+
+            {(coupons.length > 0 || deals.length > 0) ? <section aria-labelledby="store-top-offers">
+              <h2 id="store-top-offers" className="text-sm font-extrabold uppercase tracking-wide text-ink-900">{locale === "nl" ? `Populaire ${store.name} aanbiedingen` : `Top ${store.name} offers`}</h2>
+              <ul className="mt-3 space-y-3">
+                {[...coupons, ...deals].slice(0, 4).map((offer) => <li key={offer.id}><Link href={pathFor(locale, offer.type === "deal" ? "deal" : "coupon", offer.slug)} className="text-sm leading-5 text-brand-700 hover:underline">{offer.title}</Link></li>)}
+              </ul>
+            </section> : null}
+
+            <section aria-label={locale === "nl" ? "Aanbiedingen per type" : "Offers by type"} className="border-y border-ink-200 py-4">
+              <div className="flex justify-between py-1 text-sm"><span className="text-ink-600">{dict.store.couponsTitle}</span><strong>{coupons.length}</strong></div>
+              <div className="flex justify-between py-1 text-sm"><span className="text-ink-600">{dict.store.dealsTitle}</span><strong>{deals.length}</strong></div>
+            </section>
+
+            {related.length > 0 ? <nav aria-label={dict.store.relatedTitle}>
+              <h2 className="text-sm font-extrabold uppercase tracking-wide text-ink-900">{locale === "nl" ? "Populaire winkels" : "Popular stores"}</h2>
+              <ul className="mt-3 space-y-2">
+                {related.map((item) => <li key={item.id}><Link href={pathFor(locale, "store", item.slug)} className="text-sm text-brand-700 hover:underline">{item.name}</Link></li>)}
+              </ul>
+            </nav> : null}
+          </aside>
+
+          <div className="min-w-0">
+            {categories.length > 0 ? (
           <ul className="mt-5 flex flex-wrap gap-2">
             {categories.map((category) => (
               <li key={category.id}>
@@ -115,52 +128,26 @@ export async function StoreDetailPage({ locale, dict, slug }: StoreDetailPagePro
               </li>
             ))}
           </ul>
-        ) : null}
+            ) : null}
 
-        <section className="mt-10" aria-labelledby="store-coupons">
+        <section className="mt-7" aria-labelledby="store-offers">
           <SectionHeading
-            id="store-coupons"
-            title={dict.store.couponsTitle}
-            subtitle={dict.store.couponsIntro}
+            id="store-offers"
+            title={locale === "nl" ? `${store.name} aanbiedingen & kortingscodes` : `${store.name} coupons & deals`}
+            subtitle={locale === "nl" ? "Bekijk de voorwaarden en kies een aanbieding." : "Review the terms and choose an offer."}
           />
-          {coupons.length === 0 ? (
+          {coupons.length + deals.length === 0 ? (
             <EmptyState title={dict.stores.empty} description={dict.store.noCoupons} />
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {coupons.map((coupon) => (
-                <CouponCard key={coupon.id} coupon={coupon} locale={locale} dict={dict} />
+            <div className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
+              {[...coupons, ...deals].map((offer) => (
+                <MerchantOfferRow key={offer.id} offer={offer} locale={locale} dict={dict} />
               ))}
             </div>
           )}
         </section>
-
-        <section className="mt-10" aria-labelledby="store-deals">
-          <SectionHeading
-            id="store-deals"
-            title={dict.store.dealsTitle}
-            subtitle={dict.store.dealsIntro}
-          />
-          {deals.length === 0 ? (
-            <EmptyState title={dict.stores.empty} description={dict.store.noDeals} />
-          ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {deals.map((deal) => (
-                <DealCard key={deal.id} deal={deal} locale={locale} dict={dict} />
-              ))}
-            </div>
-          )}
-        </section>
-
-        {related.length > 0 ? (
-          <section className="mt-10" aria-labelledby="store-related">
-            <SectionHeading id="store-related" title={dict.store.relatedTitle} />
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-              {related.map((item) => (
-                <StoreCard key={item.id} store={item} locale={locale} dict={dict} />
-              ))}
-            </div>
-          </section>
-        ) : null}
+          </div>
+        </div>
 
         {store.faq && store.faq.length > 0 ? (
           <section className="mt-10" aria-labelledby="store-faq">
