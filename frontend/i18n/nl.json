@@ -59,6 +59,20 @@
       "contact": "Contact"
     }
   },
+  "searchResults": {
+    "title": "Zoekresultaten",
+    "showingFor": "Resultaten voor",
+    "stores": "Winkels",
+    "coupons": "Kortingscodes",
+    "deals": "Deals",
+    "allResults": "Alle resultaten",
+    "viewAllStores": "Bekijk alle winkels",
+    "viewAllCoupons": "Bekijk alle kortingscodes",
+    "viewAllDeals": "Bekijk alle deals",
+    "emptyQuery": "Vul een zoekterm in om winkels, kortingscodes en deals te vinden.",
+    "empty": "Geen winkels, kortingscodes of deals gevonden voor deze zoekterm.",
+    "resultsCount": "{count} resultaten"
+  },
   "footer": {
     "aboutTitle": "Over PrimeKortingscode",
     "aboutText": "PrimeKortingscode bundelt kortingscodes, acties en deals van webwinkels op één overzichtelijke plek.",

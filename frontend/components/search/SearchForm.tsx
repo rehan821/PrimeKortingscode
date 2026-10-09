@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
 import { pathFor, type RouteKey } from "@/lib/routes";
+import { withQuery } from "@/lib/query";
 import { SearchIcon, StoreIcon, TagIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
@@ -35,7 +36,7 @@ interface SuggestionResponse { items: Suggestion[]; }
 export function SearchForm({
   locale,
   dict,
-  actionKey = "stores",
+  actionKey = "search",
   defaultValue,
   placeholder,
   className,
@@ -49,6 +50,7 @@ export function SearchForm({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [showEmptyPrompt, setShowEmptyPrompt] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const isHeader = variant === "header";
   const isHero = variant === "hero";
@@ -125,7 +127,19 @@ export function SearchForm({
   };
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    if (isOpen && activeIndex >= 0 && chooseActive()) event.preventDefault();
+    event.preventDefault();
+    const cleaned = query.trim().slice(0, 80);
+    if (!cleaned) {
+      setShowEmptyPrompt(true);
+      setIsOpen(true);
+      root.current?.querySelector<HTMLInputElement>("input[name='q']")?.focus();
+      return;
+    }
+    if (isOpen && activeIndex >= 0 && chooseActive()) {
+      setIsOpen(false);
+      return;
+    }
+    router.push(withQuery(pathFor(locale, actionKey), { q: cleaned }));
     setIsOpen(false);
   };
 
@@ -155,10 +169,12 @@ export function SearchForm({
         id={id}
         type="search"
         name="q"
+        maxLength={80}
         value={query}
         onChange={(event) => {
           const value = event.target.value;
           setQuery(value);
+          setShowEmptyPrompt(false);
           setIsOpen(true);
           if (value.trim().length < 2) {
             setItems([]);
@@ -182,12 +198,16 @@ export function SearchForm({
         <SearchIcon size={17} />
       </button>
 
-      {isOpen && query.trim().length >= 2 ? (
+      {isOpen && (query.trim().length >= 2 || showEmptyPrompt) ? (
         <div className="absolute inset-x-0 top-[calc(100%+0.55rem)] z-[70] overflow-hidden rounded-2xl border border-ink-200 bg-white text-ink-900 shadow-[0_16px_50px_rgba(27,23,34,.2)]">
           <p className="border-b border-ink-100 px-4 py-2.5 text-[0.68rem] font-extrabold uppercase tracking-[.13em] text-ink-500">
             {isLoading ? (locale === "nl" ? "Zoeken…" : "Searching…") : (locale === "nl" ? "Beste overeenkomsten" : "Best matches")}
           </p>
-          {items.length > 0 ? (
+          {showEmptyPrompt && !query.trim() ? (
+            <p id={suggestionId} role="status" className="px-4 py-5 text-sm text-ink-600">
+              {locale === "nl" ? "Vul een zoekterm in." : "Enter a search term."}
+            </p>
+          ) : items.length > 0 ? (
             <ul id={suggestionId} role="listbox" className="max-h-[min(65vh,420px)] overflow-y-auto p-2">
               {items.map((item, index) => (
                 <li key={`${item.kind}-${item.id}`}>

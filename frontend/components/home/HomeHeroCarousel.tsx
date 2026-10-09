@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon, SparkIcon } from "@/components/ui/icons";
@@ -30,7 +30,7 @@ function PromoArtwork({ item, index, side }: { item: HomeHeroItem; index: number
     : index === 5 ? "/images/home/hero-serum.webp" : index === 4 ? "/images/home/hero-flowers.webp" : undefined;
 
   return (
-    <div className={`relative min-h-[180px] overflow-hidden sm:min-h-[390px] lg:min-h-[430px] ${side === "right" ? "hidden sm:block" : "rounded-l-[2.25rem]"} ${side === "right" ? "rounded-r-[2.25rem]" : ""}`} style={{ backgroundColor: palette.background }} aria-hidden="true">
+    <div className={`relative min-h-[180px] overflow-hidden sm:min-h-[390px] lg:min-h-[450px] ${side === "right" ? "hidden lg:block" : "rounded-l-[2.25rem]"} ${side === "right" ? "rounded-r-[2.25rem]" : ""}`} style={{ backgroundColor: palette.background }} aria-hidden="true">
       {photo ? <Image src={photo} alt="" fill sizes="(min-width: 1024px) 42vw, 80vw" className="object-cover" /> : null}
       {!photo ? <>
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: `radial-gradient(${palette.accent} 1px, transparent 1px)`, backgroundSize: "20px 20px" }} />
@@ -53,44 +53,76 @@ function PromoArtwork({ item, index, side }: { item: HomeHeroItem; index: number
 /** Wide, horizontally browsable homepage promo cards with original CSS artwork. */
 export function HomeHeroCarousel({ items, labels }: { items: HomeHeroItem[]; labels: { previous: string; next: string; view: string } }) {
   const rail = useRef<HTMLDivElement>(null);
+  const activeIndexRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(() => Math.min(3, Math.max(items.length - 1, 0)));
+  const [paused, setPaused] = useState(false);
+
+  const goTo = useCallback((index: number) => {
+    const container = rail.current;
+    const slide = container?.children.item(index) as HTMLElement | null;
+    if (!container || !slide) return;
+    activeIndexRef.current = index;
+    setActiveIndex(index);
+    const railRect = container.getBoundingClientRect();
+    const slideRect = slide.getBoundingClientRect();
+    const left = container.scrollLeft + slideRect.left - railRect.left - (container.clientWidth - slide.clientWidth) / 2;
+    container.scrollTo({ left, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     const container = rail.current;
     const firstSlide = Math.min(3, Math.max(items.length - 1, 0));
     const slide = container?.children.item(firstSlide) as HTMLElement | null;
     if (!container || !slide) return;
-    container.scrollLeft = slide.offsetLeft - (container.clientWidth - slide.clientWidth) / 2;
+    activeIndexRef.current = firstSlide;
+    setActiveIndex(firstSlide);
+    const railRect = container.getBoundingClientRect();
+    const slideRect = slide.getBoundingClientRect();
+    container.scrollLeft += slideRect.left - railRect.left - (container.clientWidth - slide.clientWidth) / 2;
   }, [items.length]);
 
-  if (items.length === 0) return null;
+  useEffect(() => {
+    if (items.length < 2) return;
+    const timer = window.setInterval(() => {
+      if (paused || document.hidden) return;
+      const nextIndex = (activeIndexRef.current + 1) % items.length;
+      goTo(nextIndex);
+    }, 6500);
+    return () => window.clearInterval(timer);
+  }, [items.length, paused, goTo]);
 
-  const scroll = (direction: -1 | 1) => rail.current?.scrollBy({ left: direction * Math.max(rail.current.clientWidth * 0.82, 420), behavior: "smooth" });
-  const goTo = (index: number) => {
-    const slide = rail.current?.children.item(index) as HTMLElement | null;
-    slide?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  const scroll = (direction: -1 | 1) => {
+    const nextIndex = (activeIndexRef.current + direction + items.length) % items.length;
+    goTo(nextIndex);
+  };
+  const clickDot = (index: number) => {
+    goTo(index);
   };
   const updateActive = () => {
     if (!rail.current) return;
-    const center = rail.current.scrollLeft + rail.current.clientWidth / 2;
+    const railRect = rail.current.getBoundingClientRect();
+    const center = railRect.left + rail.current.clientWidth / 2;
     const slides = Array.from(rail.current.children) as HTMLElement[];
     const nearest = slides.reduce((best, slide, index) => {
-      const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center);
+      const slideRect = slide.getBoundingClientRect();
+      const distance = Math.abs(slideRect.left + slideRect.width / 2 - center);
       return distance < best.distance ? { index, distance } : best;
     }, { index: 0, distance: Number.POSITIVE_INFINITY });
+    activeIndexRef.current = nearest.index;
     setActiveIndex(nearest.index);
   };
 
+  if (items.length === 0) return null;
+
   return (
-    <section aria-label={labels.view} className="relative">
-      <div ref={rail} onScroll={updateActive} className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[max(1.5rem,calc((100vw-1560px)/2))] pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <section aria-label={labels.view} className="relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div ref={rail} onScroll={updateActive} className="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-[max(1.5rem,calc((100vw-1560px)/2))] pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item, index) => (
-          <article key={item.id} className="grid w-[84vw] max-w-[1560px] flex-none snap-center grid-cols-[.62fr_1fr] overflow-hidden rounded-[2.25rem] bg-white shadow-[0_12px_38px_rgba(27,23,34,.09)] sm:grid-cols-[.72fr_.76fr_1.35fr]">
+          <article key={item.id} className="grid w-[84vw] max-w-[1560px] flex-none snap-center grid-cols-[.72fr_1fr] overflow-hidden rounded-[2.25rem] bg-white shadow-[0_12px_38px_rgba(27,23,34,.09)] lg:grid-cols-[.72fr_.68fr_1.5fr]">
             <PromoArtwork item={item} index={index} side="left" />
-            <div className="flex min-h-[310px] flex-col justify-center px-5 py-7 sm:px-7 lg:px-10">
-              <Link href={item.storeHref} className="mb-6 w-fit rounded-full border border-ink-200 bg-white px-3.5 py-1.5 text-sm font-extrabold text-ink-700 hover:border-brand-300 hover:text-brand-700">{item.storeName}</Link>
-              {item.discountLabel ? <p className="text-xs font-extrabold uppercase tracking-[.14em] text-brand-700">{item.discountLabel}</p> : null}
-              <h2 className="mt-3 line-clamp-4 text-2xl font-semibold leading-[1.2] tracking-tight text-ink-950 sm:text-3xl">{item.title}</h2>
+            <div className="flex min-h-[310px] flex-col justify-center px-5 py-7 sm:px-7 lg:min-h-[450px] lg:px-10">
+              <Link href={item.storeHref} className="mb-5 w-fit text-base font-semibold text-ink-800 hover:text-brand-700">{item.storeName}</Link>
+              <h2 className="line-clamp-4 text-[1.4rem] font-medium leading-[1.25] tracking-tight text-ink-950 sm:text-[1.55rem]">{item.title}</h2>
               <Link href={item.href} className="mt-7 inline-flex w-fit items-center gap-2 border-b-2 border-ink-900 pb-1 text-sm font-extrabold uppercase tracking-[.12em] text-ink-950 transition hover:border-brand-700 hover:text-brand-700">
                 {labels.view}<ArrowRightIcon size={16} />
               </Link>
@@ -99,11 +131,11 @@ export function HomeHeroCarousel({ items, labels }: { items: HomeHeroItem[]; lab
           </article>
         ))}
       </div>
-      {items.length > 1 ? <div className="pointer-events-none absolute inset-x-4 top-1/2 hidden -translate-y-1/2 justify-between sm:flex">
+      {items.length > 1 ? <div className="pointer-events-none absolute inset-x-[max(1.5rem,calc((100vw-1560px)/2))] top-1/2 hidden -translate-y-1/2 justify-between sm:flex">
         <button type="button" onClick={() => scroll(-1)} aria-label={labels.previous} className="pointer-events-auto flex size-12 items-center justify-center rounded-full bg-ink-950 text-white shadow-xl transition hover:scale-105 hover:bg-brand-700"><ChevronLeftIcon size={22} /></button>
         <button type="button" onClick={() => scroll(1)} aria-label={labels.next} className="pointer-events-auto flex size-12 items-center justify-center rounded-full bg-ink-950 text-white shadow-xl transition hover:scale-105 hover:bg-brand-700"><ChevronRightIcon size={22} /></button>
       </div> : null}
-      {items.length > 1 ? <div className="mt-2 flex justify-center gap-2" aria-label={labels.view}>{items.slice(0, 7).map((item, index) => <button type="button" key={item.id} onClick={() => goTo(index)} aria-label={`${labels.view}: ${item.storeName}`} aria-current={activeIndex === index ? "true" : undefined} className={`h-2.5 rounded-full transition-all ${activeIndex === index ? "w-6 bg-brand-700" : "w-2.5 bg-ink-200 hover:bg-ink-400"}`} />)}</div> : null}
+      {items.length > 1 ? <div className="mt-2 flex justify-center gap-2" aria-label={labels.view}>{items.slice(0, 7).map((item, index) => <button type="button" key={item.id} onClick={() => clickDot(index)} aria-label={`${labels.view}: ${item.storeName}`} aria-current={activeIndex === index ? "true" : undefined} className={`h-2.5 rounded-full transition-all ${activeIndex === index ? "w-6 bg-brand-700" : "w-2.5 bg-ink-200 hover:bg-ink-400"}`} />)}</div> : null}
     </section>
   );
 }

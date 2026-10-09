@@ -78,6 +78,13 @@
   body:has(.home-page) header .shell { max-width: 78rem; padding-inline: 1rem; }
   @media (min-width: 40rem) { body:has(.home-page) header .shell, body:has(.home-page) footer .shell { padding-inline: 1.5rem; } }
   @media (min-width: 64rem) { body:has(.home-page) header .shell, body:has(.home-page) footer .shell { padding-inline: 0; } }
+  @media (min-width: 64rem) {
+    body:has(.home-page) header .home-header-logo { gap: .375rem !important; }
+    body:has(.home-page) header .home-header-logo > span:first-child { width: 1.75rem !important; height: 1.75rem !important; }
+    body:has(.home-page) header .home-header-logo > span:last-child > span:first-child { font-size: 1rem !important; }
+    body:has(.home-page) header .home-header-navigation { flex: 0 0 auto !important; justify-content: flex-start !important; column-gap: 1.25rem !important; }
+    body:has(.home-page) header .home-header-search { max-width: 19.375rem !important; }
+  }
   body:has(.home-page) footer { border-color: #781d98; background-color: #781d98; }
   body:has(.home-page) footer .shell { max-width: 82rem; padding-inline: 1rem; }
   .skip-link { position: absolute; left: 1rem; top: -3.5rem; z-index: 80; border-radius: .5rem; background: var(--color-brand-700); padding: .625rem 1rem; font-size: .875rem; font-weight: 600; color: #fff; transition: top .15s ease; }

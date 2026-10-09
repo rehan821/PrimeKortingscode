@@ -43,6 +43,7 @@ const nextConfig: NextConfig = {
         { source: "/categorieen/:slug*", destination: "/nl/categorieen/:slug*" },
         { source: "/kortingscodes/:slug*", destination: "/nl/kortingscodes/:slug*" },
         { source: "/deals/:slug*", destination: "/nl/deals/:slug*" },
+        { source: "/zoeken", destination: "/nl/zoeken" },
         { source: "/blog/:slug*", destination: "/nl/blog/:slug*" },
         { source: "/contact", destination: "/nl/contact" },
         { source: "/privacybeleid", destination: "/nl/privacybeleid" },

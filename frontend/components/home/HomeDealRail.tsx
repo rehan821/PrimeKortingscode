@@ -20,7 +20,7 @@ export function HomeDealRail({ items, locale }: { items: HomeDealRailItem[]; loc
   const scroll = (direction: -1 | 1) => rail.current?.scrollBy({ left: direction * Math.max(rail.current.clientWidth * 0.8, 400), behavior: "smooth" });
 
   return (
-    <section aria-labelledby="home-today-deals" className="relative">
+    <section aria-labelledby="home-today-deals" className="group relative">
       <div ref={rail} className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item, index) => (
           <article key={item.id} className="flex w-[300px] flex-none snap-start overflow-hidden rounded-xl bg-white shadow-card sm:w-[350px]">
@@ -37,9 +37,9 @@ export function HomeDealRail({ items, locale }: { items: HomeDealRailItem[]; loc
           </article>
         ))}
       </div>
-      {items.length > 2 ? <div className="pointer-events-none absolute -top-14 right-0 hidden gap-2 sm:flex">
-        <button type="button" aria-label={locale === "nl" ? "Vorige deals" : "Previous deals"} onClick={() => scroll(-1)} className="pointer-events-auto flex size-10 items-center justify-center rounded-full border border-ink-300 bg-white text-ink-800 transition hover:border-brand-500 hover:text-brand-700"><ChevronLeftIcon size={19} /></button>
-        <button type="button" aria-label={locale === "nl" ? "Volgende deals" : "Next deals"} onClick={() => scroll(1)} className="pointer-events-auto flex size-10 items-center justify-center rounded-full border border-ink-300 bg-white text-ink-800 transition hover:border-brand-500 hover:text-brand-700"><ChevronRightIcon size={19} /></button>
+      {items.length > 2 ? <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-10 hidden items-center justify-between sm:flex">
+        <button type="button" aria-label={locale === "nl" ? "Vorige deals" : "Previous deals"} onClick={() => scroll(-1)} className="pointer-events-none flex size-12 items-center justify-center rounded-full border border-ink-200 bg-white/95 text-ink-900 opacity-0 shadow-pop transition duration-200 hover:border-brand-500 hover:bg-white hover:text-brand-700 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"><ChevronLeftIcon size={21} /></button>
+        <button type="button" aria-label={locale === "nl" ? "Volgende deals" : "Next deals"} onClick={() => scroll(1)} className="pointer-events-none flex size-12 items-center justify-center rounded-full border border-ink-200 bg-white/95 text-ink-900 opacity-0 shadow-pop transition duration-200 hover:border-brand-500 hover:bg-white hover:text-brand-700 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"><ChevronRightIcon size={21} /></button>
       </div> : null}
     </section>
   );

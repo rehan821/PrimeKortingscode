@@ -59,6 +59,20 @@
       "contact": "Contact"
     }
   },
+  "searchResults": {
+    "title": "Search results",
+    "showingFor": "Results for",
+    "stores": "Stores",
+    "coupons": "Coupons",
+    "deals": "Deals",
+    "allResults": "All results",
+    "viewAllStores": "View all stores",
+    "viewAllCoupons": "View all coupons",
+    "viewAllDeals": "View all deals",
+    "emptyQuery": "Enter a search term to find stores, coupons and deals.",
+    "empty": "No stores, coupons or deals matched this search.",
+    "resultsCount": "{count} results"
+  },
   "footer": {
     "aboutTitle": "About PrimeKortingscode",
     "aboutText": "PrimeKortingscode brings together coupon codes, promotions and deals from online stores in one clear place.",

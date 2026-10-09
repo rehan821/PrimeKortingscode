@@ -144,14 +144,11 @@ export async function HomePage({ locale, dict }: HomePageProps) {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
             {bigOffers.slice(0, 5).map((offer, index) => <HomeOfferCard key={`big-${offer.id}`} offer={offer} locale={locale} dict={dict} index={index + 1} showAction={false} />)}
           </div>
-          {bigOffers.length > 5 ? <>
-            <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
-              {bigOffers.slice(5, 10).map((offer) => <span key={`sponsored-big-${offer.id}`} className="px-2 text-xs uppercase tracking-[.12em] text-ink-500">{locale === "nl" ? "Gesponsord" : "Sponsored"}</span>)}
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+          {bigOffers.length > 5 ?
+            <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
               {bigOffers.slice(5, 10).map((offer, index) => <HomeOfferCard key={`big-${offer.id}`} offer={offer} locale={locale} dict={dict} index={index + 6} />)}
             </div>
-          </> : null}
+          : null}
         </div>
       </section> : null}
 
@@ -215,34 +212,31 @@ export async function HomePage({ locale, dict }: HomePageProps) {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
             {topOffers.slice(0, 5).map((offer, index) => <HomeOfferCard key={`top-${offer.id}`} offer={offer} locale={locale} dict={dict} index={index + 2} showAction={false} />)}
           </div>
-          {topOffers.length > 5 ? <>
-            <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
-              {topOffers.slice(5, 10).map((offer) => <span key={`sponsored-${offer.id}`} className="px-2 text-xs uppercase tracking-[.12em] text-ink-500">{locale === "nl" ? "Gesponsord" : "Sponsored"}</span>)}
-            </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+          {topOffers.length > 5 ?
+            <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
               {topOffers.slice(5, 10).map((offer, index) => <HomeOfferCard key={`top-${offer.id}`} offer={offer} locale={locale} dict={dict} index={index + 7} />)}
             </div>
-          </> : null}
+          : null}
         </div>
       </section> : null}
 
       {/* Accordion link directories */}
       <section className="bg-white" aria-label={locale === "nl" ? "Winkels en categorieën" : "Stores and categories"}>
-        <div className="home-shell py-5 sm:py-7">
-          <details className="group border-b border-ink-200 py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-extrabold uppercase tracking-[.08em] text-ink-900 marker:hidden">
+        <div className="home-shell py-3 sm:py-7">
+          <details className="group border-b border-ink-200 py-3 sm:py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-1 text-sm font-extrabold uppercase tracking-[.08em] text-ink-900 marker:hidden">
               {locale === "nl" ? "Populaire categorieën" : "Popular categories"}<span aria-hidden="true" className="text-2xl font-normal"><span className="group-open:hidden">+</span><span className="hidden group-open:inline">−</span></span>
             </summary>
-            <ul className="mt-5 grid gap-3 pb-3 sm:grid-cols-2 lg:grid-cols-4">
-              {categories.map((category) => <li key={category.id}><Link href={pathFor(locale, "category", category.slug)} className="flex items-center gap-2 text-sm text-ink-700 hover:text-brand-700">{category.name}<ArrowRightIcon size={13} /></Link></li>)}
+            <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 pb-2 sm:mt-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-3 sm:pb-3 lg:grid-cols-4">
+              {categories.map((category) => <li key={category.id}><Link href={pathFor(locale, "category", category.slug)} className="flex min-h-9 items-center gap-1.5 py-1 text-sm leading-5 text-ink-700 hover:text-brand-700"><span>{category.name}</span><ArrowRightIcon size={12} /></Link></li>)}
             </ul>
           </details>
-          <details open className="group border-b border-ink-200 py-5">
-            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-extrabold uppercase tracking-[.08em] text-ink-900 marker:hidden">
+          <details open className="group border-b border-ink-200 py-3 sm:py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-1 text-sm font-extrabold uppercase tracking-[.08em] text-ink-900 marker:hidden">
               {locale === "nl" ? "Populaire winkels" : "Popular stores"}<span aria-hidden="true" className="text-2xl font-normal"><span className="group-open:hidden">+</span><span className="hidden group-open:inline">−</span></span>
             </summary>
-            <ul className="mt-5 grid gap-x-5 gap-y-3 pb-3 sm:grid-cols-2 lg:grid-cols-5">
-              {stores.slice(0, 25).map((store) => <li key={store.id}><Link href={pathFor(locale, "store", store.slug)} className="text-sm text-ink-700 hover:text-brand-700">{store.name}</Link></li>)}
+            <ul className="mt-3 grid grid-cols-2 gap-x-3 gap-y-1.5 pb-2 sm:mt-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-3 sm:pb-3 lg:grid-cols-5">
+              {stores.slice(0, 25).map((store) => <li key={store.id}><Link href={pathFor(locale, "store", store.slug)} className="flex min-h-9 items-center py-1 text-sm leading-5 text-ink-700 hover:text-brand-700">{store.name}</Link></li>)}
             </ul>
           </details>
         </div>
@@ -263,9 +257,36 @@ export async function HomePage({ locale, dict }: HomePageProps) {
       <section className="bg-white" aria-labelledby="home-faq">
         <div className="home-shell py-11 sm:py-14">
           <h2 id="home-faq" className="mb-4 text-2xl font-black text-ink-950 sm:text-3xl">{locale === "nl" ? "Veelgestelde vragen" : "Frequently asked questions"}</h2>
-          <details className="border-b border-ink-200 py-5"><summary className="cursor-pointer list-none font-bold text-ink-900">{locale === "nl" ? "Hoe gebruik ik een kortingscode?" : "How do I use a coupon code?"}</summary><p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Open de code, kopieer deze en vul hem in tijdens het afrekenen bij de winkel. De voorwaarden van de winkel zijn leidend." : "Reveal and copy the code, then enter it at checkout. The store’s terms apply."}</p></details>
-          <details className="border-b border-ink-200 py-5"><summary className="cursor-pointer list-none font-bold text-ink-900">{locale === "nl" ? "Wat is het verschil tussen een kortingscode en een deal?" : "What is the difference between a coupon and a deal?"}</summary><p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Een kortingscode vul je meestal zelf in bij het afrekenen. Een deal brengt je direct naar een aanbieding bij de winkel." : "A coupon is usually entered at checkout. A deal takes you directly to an offer at the store."}</p></details>
-          <details className="border-b border-ink-200 py-5"><summary className="cursor-pointer list-none font-bold text-ink-900">{locale === "nl" ? "Zijn de aanbiedingen op deze website live?" : "Are the offers on this website live?"}</summary><p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Dit is een demo-website met fictieve aanbiedingen. De winkel bepaalt altijd de beschikbaarheid en voorwaarden." : "This is a demo website with fictional offers. The store always controls availability and terms."}</p></details>
+          <details className="group border-b border-ink-200 py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-bold text-ink-900 marker:hidden">
+              <span>{locale === "nl" ? "Hoe gebruik ik een kortingscode?" : "How do I use a coupon code?"}</span>
+              <span aria-hidden="true" className="shrink-0 text-2xl font-normal leading-none">
+                <span className="group-open:hidden">+</span>
+                <span className="hidden group-open:inline">−</span>
+              </span>
+            </summary>
+            <p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Open de code, kopieer deze en vul hem in tijdens het afrekenen bij de winkel. De voorwaarden van de winkel zijn leidend." : "Reveal and copy the code, then enter it at checkout. The store’s terms apply."}</p>
+          </details>
+          <details className="group border-b border-ink-200 py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-bold text-ink-900 marker:hidden">
+              <span>{locale === "nl" ? "Wat is het verschil tussen een kortingscode en een deal?" : "What is the difference between a coupon and a deal?"}</span>
+              <span aria-hidden="true" className="shrink-0 text-2xl font-normal leading-none">
+                <span className="group-open:hidden">+</span>
+                <span className="hidden group-open:inline">−</span>
+              </span>
+            </summary>
+            <p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Een kortingscode vul je meestal zelf in bij het afrekenen. Een deal brengt je direct naar een aanbieding bij de winkel." : "A coupon is usually entered at checkout. A deal takes you directly to an offer at the store."}</p>
+          </details>
+          <details className="group border-b border-ink-200 py-5">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-bold text-ink-900 marker:hidden">
+              <span>{locale === "nl" ? "Zijn de aanbiedingen op deze website live?" : "Are the offers on this website live?"}</span>
+              <span aria-hidden="true" className="shrink-0 text-2xl font-normal leading-none">
+                <span className="group-open:hidden">+</span>
+                <span className="hidden group-open:inline">−</span>
+              </span>
+            </summary>
+            <p className="mt-3 max-w-4xl text-sm leading-6 text-ink-600">{locale === "nl" ? "Dit is een demo-website met fictieve aanbiedingen. De winkel bepaalt altijd de beschikbaarheid en voorwaarden." : "This is a demo website with fictional offers. The store always controls availability and terms."}</p>
+          </details>
         </div>
       </section>
 

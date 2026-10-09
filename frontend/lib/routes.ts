@@ -21,6 +21,7 @@ export type RouteKey =
   | "coupon"
   | "deals"
   | "deal"
+  | "search"
   | "blog"
   | "post"
   | "contact"
@@ -43,6 +44,7 @@ const templates: Record<Locale, PathTemplate> = {
     coupon: "kortingscodes/{slug}",
     deals: "deals",
     deal: "deals/{slug}",
+    search: "zoeken",
     blog: "blog",
     post: "blog/{slug}",
     contact: "contact",
@@ -58,6 +60,7 @@ const templates: Record<Locale, PathTemplate> = {
     coupon: "en/coupons/{slug}",
     deals: "en/deals",
     deal: "en/deals/{slug}",
+    search: "en/search",
     blog: "en/blog",
     post: "en/blog/{slug}",
     contact: "en/contact",

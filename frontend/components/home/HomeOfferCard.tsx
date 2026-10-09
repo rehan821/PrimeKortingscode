@@ -35,6 +35,7 @@ export function HomeOfferCard({ offer, locale, dict, index = 0, orientation = "v
           </div>
         </> : null}
         {offer.discountLabel && !featurePhoto ? <span className="absolute left-3 top-3 max-w-[75%] rounded-md bg-white px-3 py-1.5 text-xs font-black text-ink-950 shadow-card">{offer.discountLabel}</span> : null}
+        {offer.isSponsored ? <span className="absolute right-3 top-3 rounded-md bg-white/95 px-2.5 py-1 text-[0.65rem] font-extrabold uppercase tracking-[.08em] text-ink-700 shadow-card">{locale === "nl" ? "Gesponsord" : "Sponsored"}</span> : null}
       </Link>
 
       <div className={`flex flex-1 flex-col p-3 ${orientation === "horizontal" ? "order-1 justify-center sm:p-5" : ""}`}>

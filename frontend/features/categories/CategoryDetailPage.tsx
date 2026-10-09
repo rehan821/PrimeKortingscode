@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
@@ -6,10 +7,12 @@ import {
   getCategoryBySlug,
   getRelatedCategories,
 } from "@/services/categories";
-import { getStoresByCategory } from "@/services/stores";
+import { getPaginatedStoresByCategory } from "@/services/stores";
 import { getCouponsByCategory } from "@/services/coupons";
 import { getDealsByCategory } from "@/services/deals";
 import { pathFor } from "@/lib/routes";
+import { firstValue, parsePage } from "@/lib/query";
+import { siteConfig } from "@/config/site";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { CategoryIcon } from "@/components/category/CategoryIcon";
@@ -20,20 +23,42 @@ import { MerchantOfferRow } from "@/components/coupon/MerchantOfferRow";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Pagination } from "@/components/common/Pagination";
+
+export interface CategoryDetailSearchParams {
+  page?: string | string[];
+}
 
 interface CategoryDetailPageProps {
   locale: Locale;
   dict: Dictionary;
   slug: string;
+  searchParams?: Promise<CategoryDetailSearchParams>;
 }
 
 /** Category detail — stores, coupons, deals and related categories. */
-export async function CategoryDetailPage({ locale, dict, slug }: CategoryDetailPageProps) {
+export function CategoryDetailPage(props: CategoryDetailPageProps) {
+  return (
+    <Suspense fallback={<div className="shell py-8"><div className="h-10 w-1/3 animate-pulse rounded-lg bg-ink-100" /></div>}>
+      <CategoryDetailContent {...props} />
+    </Suspense>
+  );
+}
+
+async function CategoryDetailContent({ locale, dict, slug, searchParams }: CategoryDetailPageProps) {
   const category = await getCategoryBySlug(slug, locale);
   if (!category) notFound();
 
+  const params = searchParams ? await searchParams : {};
+  const page = parsePage(firstValue(params.page));
+
   const [stores, coupons, deals, related] = await Promise.all([
-    getStoresByCategory(category.slug, locale, 12),
+    getPaginatedStoresByCategory(category.slug, {
+      locale,
+      page,
+      perPage: siteConfig.pagination.stores,
+      sort: "popular",
+    }),
     getCouponsByCategory(category.slug, locale, 6),
     getDealsByCategory(category.slug, locale, 6),
     getRelatedCategories(category.id, locale, 6),
@@ -96,7 +121,22 @@ export async function CategoryDetailPage({ locale, dict, slug }: CategoryDetailP
 
             <section aria-labelledby="category-stores">
               <SectionHeading id="category-stores" title={dict.category.storesTitle} />
-              {stores.length === 0 ? <EmptyState title={dict.common.noResults} description={dict.category.noStores} /> : <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">{stores.map((store) => <StoreCard key={store.id} store={store} locale={locale} dict={dict} />)}</div>}
+              {stores.total === 0 ? <EmptyState title={dict.common.noResults} description={dict.category.noStores} /> : <>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">{stores.items.map((store) => <StoreCard key={store.id} store={store} locale={locale} dict={dict} />)}</div>
+                <Pagination
+                  basePath={categoryPath}
+                  page={stores.page}
+                  totalPages={stores.totalPages}
+                  labels={{
+                    label: dict.pagination.label,
+                    previous: dict.pagination.previous,
+                    next: dict.pagination.next,
+                    page: dict.pagination.page,
+                    of: dict.pagination.of,
+                    current: dict.pagination.current,
+                  }}
+                />
+              </>}
             </section>
 
             <section aria-labelledby="category-coupons">

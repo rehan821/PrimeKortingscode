@@ -127,6 +127,8 @@ export interface Coupon {
   redirectUrl: string;
   isVerified: boolean;
   isFeatured: boolean;
+  /** Set only for offers with an explicitly approved paid placement. */
+  isSponsored?: boolean;
   discountLabel?: string;
   termsAndConditions?: string;
   usageCount?: number;
@@ -149,6 +151,8 @@ export interface Deal {
   redirectUrl: string;
   isVerified: boolean;
   isFeatured: boolean;
+  /** Set only for offers with an explicitly approved paid placement. */
+  isSponsored?: boolean;
   discountLabel?: string;
   priceFrom?: string;
   oldPrice?: string;
