@@ -3,11 +3,12 @@
 import { useEffect, useRef } from "react";
 import type { Locale, CouponWithRelations } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
+import type { ExpiryInfo } from "@/lib/expiry";
 import { safeRedirect } from "@/lib/url";
 import { interpolate } from "@/lib/date";
 import { pathFor } from "@/lib/routes";
-import { StoreLogo } from "@/components/store/StoreLogo";
-import { VerifiedBadge, ExpiryIndicator } from "@/components/common/Status";
+import { ExpiryStatus } from "@/components/common/ExpiryStatus";
+import { VerifiedBadge } from "@/components/common/VerifiedBadge";
 import { CloseIcon, ExternalLinkIcon, InfoIcon } from "@/components/ui/icons";
 import { CopyCodeButton } from "./CopyCodeButton";
 import { buttonClass } from "@/components/ui/button";
@@ -16,11 +17,12 @@ interface CouponModalProps {
   coupon: CouponWithRelations;
   locale: Locale;
   dict: Dictionary;
+  expiryInfo: ExpiryInfo;
   onClose: () => void;
 }
 
 /** Coupon reveal modal — code, copy action and store redirect in one step. */
-export function CouponModal({ coupon, locale, dict, onClose }: CouponModalProps) {
+export function CouponModal({ coupon, locale, dict, expiryInfo, onClose }: CouponModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -60,18 +62,12 @@ export function CouponModal({ coupon, locale, dict, onClose }: CouponModalProps)
       >
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <StoreLogo
-              name={coupon.store.name}
-              initials={coupon.store.initials}
-              brandColor={coupon.store.brandColor}
-              size="sm"
-            />
             <div>
               <p className="text-sm font-bold text-ink-900">{coupon.store.name}</p>
               <div className="mt-0.5 flex flex-wrap items-center gap-2">
                 {coupon.isVerified ? <VerifiedBadge text={dict.common.verified} /> : null}
-                <ExpiryIndicator
-                  expiresAt={coupon.expiresAt}
+                <ExpiryStatus
+                  info={expiryInfo}
                   locale={locale}
                   dict={dict}
                 />

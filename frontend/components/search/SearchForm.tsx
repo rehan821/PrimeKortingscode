@@ -14,6 +14,8 @@ interface SearchFormProps {
   placeholder?: string;
   className?: string;
   id?: string;
+  /** Visual treatment: default = header/page, hero = homepage immersive */
+  variant?: "default" | "hero";
 }
 
 /**
@@ -28,7 +30,10 @@ export function SearchForm({
   placeholder,
   className,
   id,
+  variant = "default",
 }: SearchFormProps) {
+  const isHero = variant === "hero";
+
   return (
     <form
       action={pathFor(locale, actionKey)}
@@ -40,7 +45,7 @@ export function SearchForm({
         {dict.header.searchAria}
       </label>
       <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-ink-400">
-        <SearchIcon size={18} />
+        <SearchIcon size={isHero ? 20 : 18} />
       </span>
       <input
         id={id}
@@ -49,8 +54,16 @@ export function SearchForm({
         defaultValue={defaultValue}
         placeholder={placeholder ?? dict.common.searchPlaceholder}
         autoComplete="off"
-        className="h-11 w-full rounded-xl border border-ink-200 bg-ink-50 pl-10 pr-3 text-sm text-ink-900 placeholder:text-ink-400 hover:border-ink-300 focus:border-brand-500 focus:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
+        className={cn(
+          "w-full rounded-xl pl-10 pr-3 text-ink-900 transition-all placeholder:text-ink-400 hover:border-ink-300 focus:outline-none",
+          isHero
+            ? "h-[54px] border border-ink-200 bg-white text-base shadow-card focus:border-brand-400 focus:shadow-pop focus-visible:ring-2 focus-visible:ring-brand-200"
+            : "h-11 border border-ink-200 bg-ink-50 text-sm focus:border-brand-500 focus:bg-white focus-visible:ring-2 focus-visible:ring-brand-200"
+        )}
       />
+      <button type="submit" aria-label={dict.header.searchAria} className={cn("absolute inset-y-1 right-1 inline-flex items-center justify-center rounded-md bg-brand-700 text-white transition hover:bg-brand-800", isHero ? "w-11" : "w-9")}>
+        <SearchIcon size={isHero ? 19 : 17} />
+      </button>
     </form>
   );
 }

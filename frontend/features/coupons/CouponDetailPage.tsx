@@ -3,13 +3,12 @@ import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
 import { getCouponBySlug, getCouponsByStore } from "@/services/coupons";
 import { pathFor } from "@/lib/routes";
-import { interpolate } from "@/lib/date";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
-import { StoreLogo } from "@/components/store/StoreLogo";
 import { CouponCard } from "@/components/coupon/CouponCard";
 import { GetCodeButton } from "@/components/coupon/GetCodeButton";
-import { ExpiryIndicator, VerifiedBadge } from "@/components/common/Status";
+import { ExpiryIndicator } from "@/components/common/ExpiryIndicator";
+import { VerifiedBadge } from "@/components/common/VerifiedBadge";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -52,46 +51,40 @@ export async function CouponDetailPage({ locale, dict, slug }: CouponDetailPageP
         />
 
         <article className="mx-auto max-w-3xl">
-          <div className="flex items-center gap-3">
-            <StoreLogo
-              name={coupon.store.name}
-              initials={coupon.store.initials}
-              brandColor={coupon.store.brandColor}
-              size="md"
-            />
-            <div>
-              <p className="font-bold text-ink-900">{coupon.store.name}</p>
-              <div className="mt-0.5 flex flex-wrap items-center gap-2">
-                {coupon.isVerified ? <VerifiedBadge text={dict.common.verified} /> : null}
-                <ExpiryIndicator expiresAt={coupon.expiresAt} locale={locale} dict={dict} />
+          {/* Store header with brand styling */}
+          <div className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
+            <div className="flex items-center gap-4 border-b border-ink-100 bg-ink-50 px-6 py-5">
+              <div className="min-w-0 flex-1">
+                <p className="text-lg font-black text-ink-900">{coupon.store.name}</p>
+                <div className="mt-1 flex flex-wrap items-center gap-2.5">
+                  {coupon.isVerified ? <VerifiedBadge text={dict.common.verified} /> : null}
+                  <ExpiryIndicator expiresAt={coupon.expiresAt} locale={locale} dict={dict} />
+                </div>
               </div>
             </div>
-          </div>
 
-          <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
-            {coupon.title}
-          </h1>
-          {coupon.discountLabel ? (
-            <p className="mt-2 inline-flex rounded-md bg-accent-50 px-2.5 py-1 text-sm font-bold text-accent-700">
-              {coupon.discountLabel}
-            </p>
-          ) : null}
+            {/* Content */}
+            <div className="px-6 py-6 sm:px-8">
+              <h1 className="text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">
+                {coupon.title}
+              </h1>
+              {coupon.discountLabel ? (
+                <p className="discount-pill mt-4 inline-flex text-base font-black">
+                  {coupon.discountLabel}
+                </p>
+              ) : null}
 
-          {coupon.description ? (
-            <p className="mt-4 text-base leading-relaxed text-ink-600">{coupon.description}</p>
-          ) : null}
+              {coupon.description ? (
+                <p className="mt-5 text-base leading-relaxed text-ink-700">{coupon.description}</p>
+              ) : null}
 
-          {coupon.usageCount ? (
-            <p className="mt-2 text-sm text-ink-500">
-              {interpolate(dict.coupons.usedTimes, { n: coupon.usageCount })}
-            </p>
-          ) : null}
-
-          <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50/60 p-5">
-            <p className="text-sm font-bold text-ink-900">{dict.coupons.aboutTitle}</p>
-            <p className="mt-1 text-sm text-ink-600">{dict.coupon.modalSubtitle}</p>
-            <div className="mt-4">
-              <GetCodeButton coupon={coupon} locale={locale} dict={dict} className="w-full sm:w-auto" />
+              <div className="mt-8 rounded-lg border border-brand-200 bg-brand-50 p-5">
+                <p className="text-base font-black text-ink-900">{dict.coupons.aboutTitle}</p>
+                <p className="mt-1.5 text-sm text-ink-600">{dict.coupon.modalSubtitle}</p>
+                <div className="mt-5">
+                  <GetCodeButton coupon={coupon} locale={locale} dict={dict} className="w-full sm:w-auto" />
+                </div>
+              </div>
             </div>
           </div>
 

@@ -61,7 +61,7 @@
   },
   "footer": {
     "aboutTitle": "Over PrimeKortingscode",
-    "aboutText": "PrimeKortingscode bundelt kortingscodes, acties en deals van bekende webwinkels op één overzichtelijke plek. Zo vind je snel een werkende code voordat je afrekent.",
+    "aboutText": "PrimeKortingscode bundelt kortingscodes, acties en deals van webwinkels op één overzichtelijke plek.",
     "discoverTitle": "Ontdek",
     "categoriesTitle": "Populaire categorieën",
     "helpTitle": "Hulp & info",
@@ -73,12 +73,13 @@
     "demoNote": "Dit is een demo-frontend met fictieve data."
   },
   "newsletter": {
+    "eyebrow": "Blijf op de hoogte",
     "title": "Bespaar als eerste",
-    "description": "Ontvang de beste kortingscodes en deals in je inbox. Geen spam, uitschrijven kan altijd.",
+    "description": "Ontdek de nieuwste kortingscodes en deals. Aanmelden is in deze demo nog niet beschikbaar.",
     "placeholder": "jouw@email.nl",
     "submit": "Aanmelden",
-    "consent": "Door je aan te melden ga je akkoord met ons privacybeleid.",
-    "success": "Bedankt! Je aanmelding is ontvangen (demo).",
+    "consent": "Demoformulier — je e-mailadres wordt niet verzonden.",
+    "success": "Nieuwsbrief aanmelden is niet beschikbaar in deze demo.",
     "error": "Vul een geldig e-mailadres in.",
     "demoHint": "Demo — er wordt geen e-mail verstuurd."
   },
@@ -107,17 +108,20 @@
   },
   "home": {
     "hero": {
-      "badge": "Dagelijks gecontroleerde codes",
+      "badge": "Kortingscodes & deals",
       "title": "Bespaar bij je favoriete webwinkels",
-      "subtitle": "Van mode tot elektronica: vind werkende kortingscodes en scherpe deals, gebundeld en overzichtelijk.",
-      "popular": "Populair:"
+      "subtitle": "Van mode tot elektronica: ontdek kortingscodes en deals van winkels in één overzicht.",
+      "popular": "Populair:",
+      "trust1": "Kortingscodes & deals",
+      "trust2": "Altijd gratis",
+      "trust3": "Direct te gebruiken"
     },
     "storesTitle": "Populaire winkels",
-    "storesSubtitle": "De meest bezochte webwinkels van dit moment",
+    "storesSubtitle": "Ontdek winkels met kortingscodes en deals",
     "categoriesTitle": "Populaire categorieën",
     "categoriesSubtitle": "Direct naar het aanbod dat bij je past",
     "couponsTitle": "Populaire kortingscodes",
-    "couponsSubtitle": "Codes die vandaag het vaakst worden gebruikt",
+    "couponsSubtitle": "Bekijk aanbiedingen met een kortingscode",
     "dealsTitle": "Nieuwste deals",
     "dealsSubtitle": "Vers aangeboden, zonder code direct te gebruiken",
     "blogTitle": "Bespaartips & inspiratie",
@@ -156,6 +160,8 @@
     "empty": "Geen categorieën gevonden. Probeer een andere zoekterm.",
     "storesCount": "winkels",
     "codesCount": "codes",
+    "offerOne": "aanbieding",
+    "offersMany": "aanbiedingen",
     "metaTitle": "Categorieën met kortingscodes & deals"
   },
   "category": {
@@ -214,16 +220,16 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Vragen, suggesties of een melding over een niet-werkende code? Neem contact op — we reageren doorgaans binnen één werkdag.",
+    "description": "Vragen, suggesties of een melding over een niet-werkende code? Gebruik het e-mailadres hieronder. Het formulier is een demo en verstuurt niets.",
     "emailTitle": "E-mail",
-    "responseTitle": "Reactietijd",
-    "responseValue": "Binnen 1 werkdag",
+    "responseTitle": "Contactmethode",
+    "responseValue": "E-mail",
     "formTitle": "Stuur een bericht",
     "name": "Naam",
     "email": "E-mailadres",
     "message": "Bericht",
     "submit": "Versturen",
-    "success": "Bedankt! Je bericht is ontvangen (demo).",
+    "success": "Bericht versturen is niet beschikbaar in deze demo.",
     "errorRequired": "Vul dit veld in.",
     "errorEmail": "Vul een geldig e-mailadres in.",
     "demoHint": "Demo — het formulier verstuurt nog niets.",
@@ -237,16 +243,16 @@
   },
   "privacy": {
     "title": "Privacybeleid",
-    "description": "Lees hoe PrimeKortingscode omgaat met je persoonsgegevens, cookies en externe links.",
+    "description": "Lees wat deze demo met formuliergegevens doet en hoe externe links werken.",
     "lastUpdated": "Laatst bijgewerkt",
     "sections": [
       {
         "heading": "Welke gegevens we verwerken",
-        "body": "PrimeKortingscode verwerkt zo weinig gegevens als mogelijk. Je kunt onze pagina's bezoeken zonder een account aan te maken. Persoonsgegevens zoals je naam en e-mailadres verwerken we alleen wanneer je die zelf achterlaat, bijvoorbeeld via het contactformulier of de nieuwsbrief."
+        "body": "De contact- en nieuwsbrief formulieren valideren alleen in je browser. In deze demo worden de ingevulde naam, het e-mailadres en bericht niet naar een backend verstuurd of door de app opgeslagen. De hostingomgeving kan technische verzoekgegevens verwerken; controleer het beleid van de beheerder van de betreffende installatie."
       },
       {
         "heading": "Cookies en statistieken",
-        "body": "We gebruiken functionele cookies om de site goed te laten werken en, met jouw toestemming, analytische cookies om te begrijpen welke pagina's en aanbiedingen het meest worden gebruikt. Je kunt je voorkeuren op elk moment aanpassen via je browserinstellingen."
+        "body": "Deze frontend configureert geen analyse- of marketingdiensten. De hostingomgeving kan eigen technische cookies of logs gebruiken; dat valt buiten deze demo-app. Externe winkels kunnen hun eigen cookies plaatsen nadat je hun website opent."
       },
       {
         "heading": "Externe links en winkels",
@@ -254,11 +260,11 @@
       },
       {
         "heading": "Nieuwsbrief",
-        "body": "Schrijf je in voor de nieuwsbrief, dan gebruiken we je e-mailadres alleen om je de beste kortingscodes en deals te sturen. Elke e-mail bevat een link om je direct af te melden; daarna verwijderen we je gegevens uit onze lijst."
+        "body": "De nieuwsbriefinschrijving is in deze demo niet aangesloten. De browser controleert alleen het e-mailadres; er wordt geen inschrijving verzonden of mailinglijst bijgewerkt. Werk deze tekst bij wanneer een nieuwsbriefprovider wordt aangesloten."
       },
       {
         "heading": "Jouw rechten",
-        "body": "Je hebt het recht om te vragen welke gegevens we van je hebben, om ze te laten corrigeren of te laten verwijderen. Neem hiervoor contact met ons op via de contactpagina; we reageren doorgaans binnen één werkdag."
+        "body": "Je kunt contact opnemen via het e-mailadres op de contactpagina. Dit demoformulier verstuurt geen verzoek en deze frontend belooft geen verwerkingstermijn. De beheerder van een productie-installatie moet deze informatie aanpassen aan de daadwerkelijke gegevensverwerking."
       }
     ]
   },

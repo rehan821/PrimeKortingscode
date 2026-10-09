@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/i18n/dictionary";
-import { CheckIcon, MailIcon } from "@/components/ui/icons";
+import { InfoIcon, MailIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 interface NewsletterSectionProps {
@@ -17,7 +17,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
  */
 export function NewsletterSection({ dict }: NewsletterSectionProps) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "error" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "error" | "demo">("idle");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,18 +25,17 @@ export function NewsletterSection({ dict }: NewsletterSectionProps) {
       setStatus("error");
       return;
     }
-    setStatus("success");
+    setStatus("demo");
   }
 
-  if (status === "success") {
+  if (status === "demo") {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-success-100 bg-success-50 px-5 py-4">
-        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-success-500 text-white">
-          <CheckIcon size={18} />
+      <div role="status" className="flex items-center gap-3 rounded-2xl border border-brand-100 bg-white px-5 py-4">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700">
+          <InfoIcon size={18} />
         </span>
         <div>
-          <p className="text-sm font-bold text-success-700">{dict.newsletter.success}</p>
-          <p className="text-xs text-success-600">{dict.newsletter.demoHint}</p>
+          <p className="text-sm font-bold text-ink-800">{dict.newsletter.demoHint}</p>
         </div>
       </div>
     );

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { Dictionary } from "@/i18n/dictionary";
 import { buttonClass } from "@/components/ui/button";
-import { CheckIcon } from "@/components/ui/icons";
+import { InfoIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 
 interface ContactFormProps {
@@ -40,13 +40,12 @@ export function ContactForm({ dict }: ContactFormProps) {
 
   if (sent) {
     return (
-      <div className="flex items-center gap-3 rounded-2xl border border-success-100 bg-success-50 px-5 py-4">
-        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-success-500 text-white">
-          <CheckIcon size={18} />
+      <div role="status" className="flex items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50 px-5 py-4">
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-brand-700">
+          <InfoIcon size={18} />
         </span>
         <div>
-          <p className="text-sm font-bold text-success-700">{dict.contact.success}</p>
-          <p className="text-xs text-success-600">{dict.contact.demoHint}</p>
+          <p className="text-sm font-bold text-ink-800">{dict.contact.demoHint}</p>
         </div>
       </div>
     );

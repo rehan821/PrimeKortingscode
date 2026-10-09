@@ -3,13 +3,12 @@ import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
 import { getDealBySlug, getDealsByStore } from "@/services/deals";
 import { pathFor } from "@/lib/routes";
-import { interpolate } from "@/lib/date";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
-import { StoreLogo } from "@/components/store/StoreLogo";
 import { DealCard } from "@/components/coupon/DealCard";
 import { GetDealButton } from "@/components/coupon/GetDealButton";
-import { ExpiryIndicator, VerifiedBadge } from "@/components/common/Status";
+import { ExpiryIndicator } from "@/components/common/ExpiryIndicator";
+import { VerifiedBadge } from "@/components/common/VerifiedBadge";
 import { SectionHeading, EmptyState } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -53,12 +52,6 @@ export async function DealDetailPage({ locale, dict, slug }: DealDetailPageProps
 
         <article className="mx-auto max-w-3xl">
           <div className="flex items-center gap-3">
-            <StoreLogo
-              name={deal.store.name}
-              initials={deal.store.initials}
-              brandColor={deal.store.brandColor}
-              size="md"
-            />
             <div>
               <p className="font-bold text-ink-900">{deal.store.name}</p>
               <div className="mt-0.5 flex flex-wrap items-center gap-2">
@@ -93,12 +86,6 @@ export async function DealDetailPage({ locale, dict, slug }: DealDetailPageProps
 
           {deal.description ? (
             <p className="mt-4 text-base leading-relaxed text-ink-600">{deal.description}</p>
-          ) : null}
-
-          {deal.usageCount ? (
-            <p className="mt-2 text-sm text-ink-500">
-              {interpolate(dict.coupons.usedTimes, { n: deal.usageCount })}
-            </p>
           ) : null}
 
           <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50/60 p-5">

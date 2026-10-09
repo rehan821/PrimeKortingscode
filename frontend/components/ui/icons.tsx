@@ -128,6 +128,21 @@ export const SparkIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const PercentIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="7" cy="7" r="2" />
+    <circle cx="17" cy="17" r="2" />
+    <path d="M6 18L18 6" />
+  </Icon>
+);
+
+export const ShieldCheckIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3l8 3v6c0 4.5-3.5 8-8 10-4.5-2-8-5.5-8-10V6l8-3Z" />
+    <path d="m9 12 2 2 4-4" />
+  </Icon>
+);
+
 export const GlobeIcon = (p: IconProps) => (
   <Icon {...p}>
     <circle cx="12" cy="12" r="9" />

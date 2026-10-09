@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { ArrowRightIcon } from "./icons";
 
 interface SectionHeadingProps {
   title: string;
@@ -27,6 +28,45 @@ export function SectionHeading({ title, subtitle, href, viewAllLabel, id }: Sect
         >
           {viewAllLabel}
           <span aria-hidden="true">→</span>
+        </Link>
+      ) : null}
+    </div>
+  );
+}
+
+/** Homepage section heading — stronger visual treatment */
+export function HomeSectionHeading({
+  title,
+  subtitle,
+  href,
+  viewAllLabel,
+  id,
+  accent = false,
+}: SectionHeadingProps & { accent?: boolean }) {
+  return (
+    <div className="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+      <div>
+        <h2
+          id={id}
+          className={`text-2xl font-black tracking-tight sm:text-3xl ${
+            accent ? "text-accent-600" : "text-ink-900"
+          }`}
+        >
+          {title}
+        </h2>
+        {subtitle ? (
+          <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">
+            {subtitle}
+          </p>
+        ) : null}
+      </div>
+      {href && viewAllLabel ? (
+        <Link
+          href={href}
+          className="inline-flex items-center gap-1.5 rounded-lg border-2 border-brand-600 bg-brand-600 px-4 py-2 text-sm font-bold text-white transition-all hover:border-brand-700 hover:bg-brand-700"
+        >
+          {viewAllLabel}
+          <ArrowRightIcon size={14} />
         </Link>
       ) : null}
     </div>

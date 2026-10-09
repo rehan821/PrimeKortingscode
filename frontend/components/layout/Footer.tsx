@@ -20,8 +20,8 @@ export async function Footer({ locale, dict }: FooterProps) {
   const year = await getCurrentYear();
 
   return (
-    <footer className="mt-16 border-t border-ink-200 bg-ink-950 text-ink-300">
-      <div className="shell grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-ink-200 bg-ink-950 text-ink-300">
+      <div className="shell grid gap-9 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="max-w-sm">
           <Logo locale={locale} tone="dark" />
           <p className="mt-4 text-sm leading-relaxed text-ink-400">{dict.footer.aboutText}</p>

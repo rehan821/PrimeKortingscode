@@ -32,8 +32,8 @@ export function NavLinks({
                 className={cn(
                   "inline-flex h-11 items-center rounded-lg px-3 text-sm font-semibold transition-colors",
                   active
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-ink-600 hover:bg-ink-50 hover:text-ink-900",
+                    ? "bg-white text-brand-800"
+                    : "text-white/80 hover:bg-white/10 hover:text-white",
                 )}
               >
                 {item.label}

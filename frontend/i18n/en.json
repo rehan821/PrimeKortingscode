@@ -61,7 +61,7 @@
   },
   "footer": {
     "aboutTitle": "About PrimeKortingscode",
-    "aboutText": "PrimeKortingscode brings together coupon codes, promotions and deals from well-known online stores in one clear place, so you can find a working code before you check out.",
+    "aboutText": "PrimeKortingscode brings together coupon codes, promotions and deals from online stores in one clear place.",
     "discoverTitle": "Discover",
     "categoriesTitle": "Popular categories",
     "helpTitle": "Help & info",
@@ -73,12 +73,13 @@
     "demoNote": "This is a demo frontend with fictional data."
   },
   "newsletter": {
+    "eyebrow": "Stay informed",
     "title": "Be the first to save",
-    "description": "Get the best coupon codes and deals in your inbox. No spam, unsubscribe any time.",
+    "description": "Explore new coupon codes and deals. Sign-up is not available in this demo yet.",
     "placeholder": "you@email.com",
     "submit": "Subscribe",
-    "consent": "By subscribing you agree to our privacy policy.",
-    "success": "Thanks! Your subscription was received (demo).",
+    "consent": "Demo form — your email address is not sent.",
+    "success": "Newsletter sign-up is unavailable in this demo.",
     "error": "Please enter a valid email address.",
     "demoHint": "Demo — no email is sent."
   },
@@ -107,17 +108,20 @@
   },
   "home": {
     "hero": {
-      "badge": "Codes checked daily",
+      "badge": "Coupons & deals",
       "title": "Save at your favourite online stores",
-      "subtitle": "From fashion to electronics: find working coupon codes and sharp deals, gathered in one clear overview.",
-      "popular": "Popular:"
+      "subtitle": "From fashion to electronics, explore store coupons and deals in one clear overview.",
+      "popular": "Popular:",
+      "trust1": "Coupons & deals",
+      "trust2": "Always free",
+      "trust3": "Ready to use"
     },
     "storesTitle": "Popular stores",
-    "storesSubtitle": "The most visited online stores right now",
+    "storesSubtitle": "Explore stores with coupon codes and deals",
     "categoriesTitle": "Popular categories",
     "categoriesSubtitle": "Jump straight to the offers that suit you",
     "couponsTitle": "Popular coupon codes",
-    "couponsSubtitle": "The codes used most often today",
+    "couponsSubtitle": "Browse offers that use a coupon code",
     "dealsTitle": "Latest deals",
     "dealsSubtitle": "Freshly added — claim with one click, no code needed",
     "blogTitle": "Saving tips & inspiration",
@@ -156,6 +160,8 @@
     "empty": "No categories found. Try a different search term.",
     "storesCount": "stores",
     "codesCount": "codes",
+    "offerOne": "offer",
+    "offersMany": "offers",
     "metaTitle": "Categories with coupon codes & deals"
   },
   "category": {
@@ -214,16 +220,16 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Questions, suggestions or a report about a code that doesn't work? Get in touch — we normally reply within one business day.",
+    "description": "Questions, suggestions or a report about a code that doesn't work? Use the email address below. This demo form does not send messages.",
     "emailTitle": "Email",
-    "responseTitle": "Response time",
-    "responseValue": "Within 1 business day",
+    "responseTitle": "Contact method",
+    "responseValue": "Email",
     "formTitle": "Send a message",
     "name": "Name",
     "email": "Email address",
     "message": "Message",
     "submit": "Send",
-    "success": "Thanks! Your message was received (demo).",
+    "success": "Message delivery is unavailable in this demo.",
     "errorRequired": "Please fill in this field.",
     "errorEmail": "Please enter a valid email address.",
     "demoHint": "Demo — the form does not send anything yet.",
@@ -237,16 +243,16 @@
   },
   "privacy": {
     "title": "Privacy policy",
-    "description": "Read how PrimeKortingscode handles your personal data, cookies and external links.",
+    "description": "Read what this demo does with form data and how external links work.",
     "lastUpdated": "Last updated",
     "sections": [
       {
         "heading": "What data we process",
-        "body": "PrimeKortingscode processes as little data as possible. You can browse our pages without creating an account. We only process personal data such as your name and email address when you provide it yourself, for example through the contact form or the newsletter."
+        "body": "The contact and newsletter forms only validate in your browser. In this demo, the name, email address and message you enter are not sent to a backend or stored by the app. The hosting environment may process technical request data; check the policy of the administrator of that installation."
       },
       {
         "heading": "Cookies and analytics",
-        "body": "We use functional cookies to keep the site working and, with your consent, analytical cookies to understand which pages and offers are used most. You can change your preferences at any time through your browser settings."
+        "body": "This frontend does not configure analytics or marketing services. The hosting environment may use its own technical cookies or logs; those are outside this demo app. External stores may set their own cookies after you open their websites."
       },
       {
         "heading": "External links and stores",
@@ -254,11 +260,11 @@
       },
       {
         "heading": "Newsletter",
-        "body": "If you subscribe to the newsletter, we use your email address only to send you the best coupon codes and deals. Every email includes a link to unsubscribe immediately, after which we remove your details from our list."
+        "body": "Newsletter sign-up is not connected in this demo. The browser only validates the email address; no subscription is sent and no mailing list is updated. Update this text when a newsletter provider is connected."
       },
       {
         "heading": "Your rights",
-        "body": "You have the right to ask which data we hold about you, to have it corrected or deleted. Contact us through the contact page to do so; we normally reply within one business day."
+        "body": "You can contact us using the email address on the contact page. This demo form does not submit requests, and this frontend makes no processing-time promise. The administrator of a production installation must update this information to match its actual data processing."
       }
     ]
   },

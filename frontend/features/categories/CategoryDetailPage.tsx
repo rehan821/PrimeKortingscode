@@ -61,7 +61,7 @@ export async function CategoryDetailPage({ locale, dict, slug }: CategoryDetailP
           ]}
         />
 
-        <header className="flex flex-col gap-4 rounded-2xl border border-ink-200 bg-white p-5 shadow-card sm:flex-row sm:items-center sm:p-6">
+        <header className="flex flex-col gap-4 rounded-xl border border-ink-200 bg-white p-5 shadow-card sm:flex-row sm:items-center sm:p-6">
           <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-700">
             <CategoryIcon name={category.icon} size={30} />
           </span>

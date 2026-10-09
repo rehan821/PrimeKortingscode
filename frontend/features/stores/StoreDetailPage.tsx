@@ -9,7 +9,6 @@ import { pathFor } from "@/lib/routes";
 import { interpolate } from "@/lib/date";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
-import { StoreLogo } from "@/components/store/StoreLogo";
 import { StoreCard } from "@/components/store/StoreCard";
 import { CouponCard } from "@/components/coupon/CouponCard";
 import { DealCard } from "@/components/coupon/DealCard";
@@ -70,30 +69,35 @@ export async function StoreDetailPage({ locale, dict, slug }: StoreDetailPagePro
           ]}
         />
 
-        <header className="flex flex-col gap-5 rounded-2xl border border-ink-200 bg-white p-5 shadow-card sm:flex-row sm:items-center sm:p-6">
-          <StoreLogo
-            name={store.name}
-            initials={store.initials}
-            brandColor={store.brandColor}
-            size="lg"
-          />
-          <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">{store.name}</h1>
-            <p className="mt-1 text-sm text-ink-500">
-              {interpolate(dict.stores.offersMany, { n: offers })}
-            </p>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-600">
+        <header className="overflow-hidden rounded-xl border border-ink-200 bg-white shadow-card">
+          <div className="border-b border-ink-100 bg-ink-50 px-6 py-5 sm:px-8">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-3xl font-black tracking-tight text-ink-900 sm:text-4xl">
+                  {store.name}
+                </h1>
+                <p className="mt-2 flex items-center gap-2 text-base font-semibold text-save-700">
+                  <span className="inline-block h-2 w-2 rounded-full bg-save-500"></span>
+                  {interpolate(dict.stores.offersMany, { n: offers })}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Description and CTA */}
+          <div className="flex flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:px-8">
+            <p className="flex-1 text-base leading-relaxed text-ink-700">
               {store.description}
             </p>
-          </div>
-          <div className="sm:w-48">
-            <GetDealButton
-              redirectUrl={store.websiteUrl}
-              fallbackHref={storePath}
-              storeName={store.name}
-              dict={dict}
-              className="w-full"
-            />
+            <div className="sm:w-52">
+              <GetDealButton
+                redirectUrl={store.websiteUrl}
+                fallbackHref={storePath}
+                storeName={store.name}
+                dict={dict}
+                className="w-full"
+              />
+            </div>
           </div>
         </header>
 

@@ -3,53 +3,56 @@ import { siteConfig } from "@/config/site";
 import { pathFor } from "@/lib/routes";
 import type { Locale } from "@/types";
 
-/** Brand mark — a compact tag glyph plus the wordmark. */
+/** Brand mark — tag glyph with bold two-tone wordmark. */
 export function Logo({
   locale,
   tone = "light",
   className,
 }: {
   locale: Locale;
-  /** `light` = on white backgrounds, `dark` = on ink backgrounds. */
   tone?: "light" | "dark";
   className?: string;
 }) {
+  const isLight = tone === "light";
+
   return (
     <Link
       href={pathFor(locale, "home")}
-      className={`inline-flex items-center gap-2.5 ${className ?? ""}`}
+      className={`inline-flex items-center gap-2 ${className ?? ""}`}
       aria-label={siteConfig.name}
     >
+      {/* Icon mark */}
       <span
         aria-hidden="true"
-        className={`inline-flex h-9 w-9 items-center justify-center rounded-xl text-white shadow-sm ${
-          tone === "dark" ? "bg-brand-500" : "bg-brand-600"
-        }`}
+        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-600"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          {/* Tag outline */}
           <path
-            d="M4 12.2V5.5A1.5 1.5 0 0 1 5.5 4h6.7c.4 0 .8.16 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-6.7 6.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 4 12.2Z"
-            fill="currentColor"
-            opacity="0.22"
+            d="M4.5 4.5h6.086c.53 0 1.04.21 1.414.586l7.828 7.828a2 2 0 0 1 0 2.828l-5.086 5.086a2 2 0 0 1-2.828 0L4.086 12.5A2 2 0 0 1 3.5 11.086V5.5a1 1 0 0 1 1-1Z"
+            fill="rgba(255,255,255,0.18)"
+            stroke="white"
+            strokeWidth="1.5"
           />
-          <path
-            d="M4 12.2V5.5A1.5 1.5 0 0 1 5.5 4h6.7c.4 0 .8.16 1.06.44l7.3 7.3a1.5 1.5 0 0 1 0 2.12l-6.7 6.7a1.5 1.5 0 0 1-2.12 0l-7.3-7.3A1.5 1.5 0 0 1 4 12.2Z"
-            stroke="currentColor"
-            strokeWidth="1.6"
-          />
-          <path d="M8.4 8.4l4.6 4.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          <circle cx="8.7" cy="8.7" r="1.2" fill="currentColor" />
-          <circle cx="13.1" cy="13.1" r="1.2" fill="currentColor" />
+          {/* Percent symbol */}
+          <circle cx="8" cy="9" r="1.1" fill="white" />
+          <path d="M7.5 13.5L13 7.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+          <circle cx="13" cy="13" r="1.1" fill="white" />
         </svg>
       </span>
-      <span
-        className={`text-[1.05rem] font-extrabold leading-none tracking-tight ${
-          tone === "dark" ? "text-white" : "text-ink-900"
-        }`}
-      >
-        Prime
-        <span className={tone === "dark" ? "text-brand-300" : "text-brand-600"}>
-          Kortingscode
+
+      {/* Wordmark */}
+      <span className="leading-none">
+        <span
+          className={`block text-[1.1rem] font-black tracking-tight ${
+            isLight ? "text-ink-900" : "text-white"
+          }`}
+        >
+          Prime
+          <span className={isLight ? "text-brand-600" : "text-brand-300"}>Korting</span>
+          <span className={`font-semibold ${isLight ? "text-ink-500" : "text-brand-200/70"}`}>
+            scode
+          </span>
         </span>
       </span>
     </Link>
