@@ -39,16 +39,16 @@ function FeaturedTile({ category, locale }: { category: FeaturedCategory; locale
   return (
     <Link
       href={hrefFor(locale, category.slug)}
-      className="group flex w-full max-w-[170px] flex-col items-center text-center"
+      className="group flex flex-col items-center text-center"
     >
-      <span className="flex aspect-square w-full items-center justify-center rounded-full bg-[#f3f4f6] transition-transform duration-300 group-hover:scale-105">
+      <span className="flex aspect-square w-24 items-center justify-center rounded-full bg-[#f3f4f6] transition-transform duration-300 group-hover:scale-105 sm:w-32 md:w-40 lg:w-[170px]">
         <CategoryIcon
           name={category.icon}
           size={68}
-          className="text-ink-700 transition-colors group-hover:text-brand-700"
+          className="h-10 w-10 text-ink-700 transition-colors group-hover:text-brand-700 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-[68px] lg:w-[68px]"
         />
       </span>
-      <span className="mx-auto mt-3 block w-full max-w-[150px] text-[13px] font-bold uppercase leading-snug text-ink-950 transition-colors group-hover:text-brand-700 sm:text-sm">
+      <span className="mx-auto mt-2 block w-full max-w-[120px] text-[11px] font-bold uppercase leading-snug text-ink-950 transition-colors group-hover:text-brand-700 sm:mt-3 sm:max-w-[140px] sm:text-xs md:max-w-[150px] md:text-[13px] lg:text-sm">
         {category.name}
       </span>
     </Link>
@@ -73,7 +73,7 @@ function TaxonomyItem({
         {node.name}
       </Link>
       {node.children && node.children.length > 0 ? (
-        <ul className="category-taxonomy mt-2">
+        <ul className="category-taxonomy mt-1.5">
           {node.children.map((child, index) => (
             <TaxonomyItem
               key={`${child.name}-${index}`}
@@ -91,7 +91,7 @@ function TaxonomyItem({
 /** One category group: bold uppercase heading + its bullet list. */
 function CategoryGroupBlock({ group, locale }: { group: CategoryGroup; locale: Locale }) {
   return (
-    <div className="mb-9 last:mb-0">
+    <div className="mb-5 last:mb-0">
       <Link
         href={hrefFor(locale, group.slug)}
         className="block text-[15px] font-bold uppercase leading-snug text-ink-950 transition-colors hover:text-brand-700 hover:underline sm:text-base"
@@ -99,7 +99,7 @@ function CategoryGroupBlock({ group, locale }: { group: CategoryGroup; locale: L
         {group.name}
       </Link>
       {group.children && group.children.length > 0 ? (
-        <ul className="category-taxonomy mt-3 text-[15px] leading-relaxed text-ink-950 sm:text-base">
+        <ul className="category-taxonomy mt-2 text-[15px] leading-snug text-ink-950 sm:text-base">
           {group.children.map((child, index) => (
             <TaxonomyItem
               key={`${child.name}-${index}`}
@@ -136,16 +136,16 @@ export function CategoriesPage({ locale }: CategoriesPageProps) {
 
   return (
     <div className="categories-page">
-      <div className="categories-shell pb-12 pt-8 sm:pt-10">
+      <div className="categories-shell pb-10 pt-5 sm:pt-6">
         {/* ============================================================
          *  SECTION 1 — Top Coupons & Deals Categories
          * ========================================================== */}
         <section aria-labelledby="top-categories-heading">
-          <h2 id="top-categories-heading" className="text-2xl font-black tracking-tight text-ink-950 sm:text-3xl">
+          <h2 id="top-categories-heading" className="text-xl font-bold text-ink-950 sm:text-2xl">
             Top Coupons &amp; Deals Categories
           </h2>
 
-          <div className="mt-8 grid grid-cols-2 justify-items-center gap-x-6 gap-y-8 sm:grid-cols-3 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5">
+          <div className="mt-6 grid grid-cols-2 justify-items-center gap-x-4 gap-y-5 sm:grid-cols-3 sm:gap-x-6 md:grid-cols-4 lg:grid-cols-5">
             {FEATURED_CATEGORIES.map((category) => (
               <FeaturedTile key={`${category.name}-${category.slug}`} category={category} locale={locale} />
             ))}
@@ -153,17 +153,17 @@ export function CategoriesPage({ locale }: CategoriesPageProps) {
         </section>
 
         {/* Divider */}
-        <hr className="my-10 border-[#e5e7eb]" />
+        <hr className="my-7 border-[#e5e7eb]" />
 
         {/* ============================================================
          *  SECTION 2 — All Coupons & Deals Categories
          * ========================================================== */}
         <section aria-labelledby="all-categories-heading">
-          <h2 id="all-categories-heading" className="text-2xl font-black tracking-tight text-ink-950 sm:text-3xl">
+          <h2 id="all-categories-heading" className="text-xl font-bold text-ink-950 sm:text-2xl">
             All Coupons &amp; Deals Categories
           </h2>
 
-          <div className="mt-6 grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
             {columns.map((column, columnIndex) => (
               <div key={columnIndex}>
                 {column.map((group) => (

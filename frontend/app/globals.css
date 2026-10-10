@@ -88,8 +88,8 @@
   body:has(.home-page) footer { border-color: #781d98; background-color: #781d98; }
   body:has(.home-page) footer .shell { max-width: 82rem; padding-inline: 1rem; }
   /* Categories page: a centred column that always keeps room on both sides. */
-  .categories-shell { margin-inline: auto; width: 100%; max-width: 80rem; padding-inline: 1rem; }
-  @media (min-width: 40rem) { .categories-shell { padding-inline: 1.5rem; } }
+  .categories-page { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .categories-shell { margin-inline: auto; width: 100%; max-width: 80rem; padding-inline: 1.5rem; }
   @media (min-width: 64rem) { .categories-shell { padding-inline: 2rem; } }
   body:has(.categories-page) header .shell,
   body:has(.categories-page) footer .shell { max-width: 80rem; }
