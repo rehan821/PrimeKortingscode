@@ -73,7 +73,7 @@ function TaxonomyItem({
         {node.name}
       </Link>
       {node.children && node.children.length > 0 ? (
-        <ul className="category-taxonomy mt-1.5">
+        <ul className="category-taxonomy mt-0.5">
           {node.children.map((child, index) => (
             <TaxonomyItem
               key={`${child.name}-${index}`}
@@ -99,7 +99,7 @@ function CategoryGroupBlock({ group, locale }: { group: CategoryGroup; locale: L
         {group.name}
       </Link>
       {group.children && group.children.length > 0 ? (
-        <ul className="category-taxonomy mt-2 text-[15px] leading-snug text-ink-950 sm:text-base">
+        <ul className="category-taxonomy mt-1 text-[15px] leading-snug text-ink-950 sm:text-base">
           {group.children.map((child, index) => (
             <TaxonomyItem
               key={`${child.name}-${index}`}
