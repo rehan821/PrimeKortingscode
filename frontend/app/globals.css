@@ -87,6 +87,26 @@
   }
   body:has(.home-page) footer { border-color: #781d98; background-color: #781d98; }
   body:has(.home-page) footer .shell { max-width: 82rem; padding-inline: 1rem; }
+  /* Categories page: a centred column that always keeps room on both sides. */
+  .categories-shell { margin-inline: auto; width: 100%; max-width: 80rem; padding-inline: 1rem; }
+  @media (min-width: 40rem) { .categories-shell { padding-inline: 1.5rem; } }
+  @media (min-width: 64rem) { .categories-shell { padding-inline: 2rem; } }
+  body:has(.categories-page) header .shell,
+  body:has(.categories-page) footer .shell { max-width: 80rem; }
+  @media (min-width: 64rem) {
+    body:has(.categories-page) header .shell,
+    body:has(.categories-page) footer .shell { padding-inline: 2rem; }
+  }
+  /* Bullet list of the categories page: custom dots, compact rhythm. */
+  .category-taxonomy { list-style: none; }
+  .category-taxonomy > li { position: relative; padding-left: 1.5rem; }
+  .category-taxonomy > li::before { content: "•"; position: absolute; left: .25rem; top: 0; font-weight: 700; }
+  .category-taxonomy ul { padding-left: 1rem; }
+  @media (min-width: 64rem) {
+    .category-taxonomy > li { padding-left: 3rem; }
+    .category-taxonomy > li::before { left: 1.25rem; }
+    .category-taxonomy ul { padding-left: 1.5rem; }
+  }
   .skip-link { position: absolute; left: 1rem; top: -3.5rem; z-index: 80; border-radius: .5rem; background: var(--color-brand-700); padding: .625rem 1rem; font-size: .875rem; font-weight: 600; color: #fff; transition: top .15s ease; }
   .skip-link:focus { top: 1rem; }
   .page-section { background: #fff; }
