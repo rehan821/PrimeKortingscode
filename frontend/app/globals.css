@@ -131,3 +131,10 @@
   .article-body li + li { margin-top: .5em; }
   .article-body strong { color: var(--color-ink-900); }
 }
+
+/* Sign-in page: minimal auth chrome — the page renders its own purple brand
+   bar and copyright line instead of the site header/footer. Unlayered on
+   purpose: these must beat the utility classes the shared chrome carries. */
+body:has(.signin-page) header,
+body:has(.signin-page) footer { display: none !important; }
+.signin-page { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }

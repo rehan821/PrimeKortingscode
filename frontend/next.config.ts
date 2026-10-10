@@ -47,6 +47,7 @@ const nextConfig: NextConfig = {
         { source: "/blog/:slug*", destination: "/nl/blog/:slug*" },
         { source: "/contact", destination: "/nl/contact" },
         { source: "/privacybeleid", destination: "/nl/privacybeleid" },
+        { source: "/inloggen", destination: "/nl/inloggen" },
       ],
     };
   },

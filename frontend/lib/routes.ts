@@ -25,7 +25,8 @@ export type RouteKey =
   | "blog"
   | "post"
   | "contact"
-  | "privacy";
+  | "privacy"
+  | "signin";
 
 type PathTemplate = Record<RouteKey, string>;
 
@@ -49,6 +50,7 @@ const templates: Record<Locale, PathTemplate> = {
     post: "blog/{slug}",
     contact: "contact",
     privacy: "privacybeleid",
+    signin: "inloggen",
   },
   en: {
     home: "en",
@@ -65,6 +67,7 @@ const templates: Record<Locale, PathTemplate> = {
     post: "en/blog/{slug}",
     contact: "en/contact",
     privacy: "en/privacy",
+    signin: "en/sign-in",
   },
 };
 
