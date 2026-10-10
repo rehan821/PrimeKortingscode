@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://primekortingscode.nl/schemas/blog.schema.json",
+  "title": "BlogPost",
+  "description": "Editorial article. Locale-aware: one document per language, `locale` identifies which.",
+  "type": "object",
+  "required": ["id", "slug", "title", "excerpt", "body", "locale", "author", "publishedAt", "updatedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "locale": { "type": "string", "enum": ["nl", "en"] },
+    "title": { "type": "string", "minLength": 1 },
+    "excerpt": { "type": "string" },
+    "body": {
+      "type": "string",
+      "description": "HTML article body (server-rendered, never fetched client-side)."
+    },
+    "coverImage": {
+      "type": ["string", "null"],
+      "description": "Absolute or root-relative path to an optimised image in /public."
+    },
+    "category": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "author": { "type": "string" },
+    "readingTimeMinutes": { "type": "integer", "minimum": 1 },
+    "isFeatured": { "type": "boolean" },
+    "publishedAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  }
+}

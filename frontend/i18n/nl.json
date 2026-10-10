@@ -1,0 +1,290 @@
+{
+  "meta": {
+    "siteName": "PrimeKortingscode",
+    "tagline": "Kortingscodes, deals & aanbiedingen",
+    "defaultDescription": "Vind de nieuwste kortingscodes, acties en deals van populaire webwinkels. Dagelijks gecontroleerd — bespaar direct bij bol.com, Zalando, Coolblue en meer."
+  },
+  "common": {
+    "skipToContent": "Ga naar de inhoud",
+    "viewAll": "Bekijk alles",
+    "home": "Home",
+    "search": "Zoeken",
+    "searchPlaceholder": "Zoek een winkel, categorie of code",
+    "clear": "Wissen",
+    "verified": "Geverifieerd",
+    "unverified": "In check",
+    "demoNotice": "Demo-omgeving — aanbiedingen en codes zijn fictief.",
+    "expires": "Verloopt",
+    "expiresToday": "Verloopt vandaag",
+    "expired": "Verlopen",
+    "expiresUnknown": "Geen einddatum",
+    "daysLeft": "Nog {n} dagen",
+    "oneDayLeft": "Nog 1 dag",
+    "results": "Resultaten",
+    "noResults": "Niets gevonden",
+    "new": "Nieuw",
+    "featured": "Uitgelicht"
+  },
+  "buttons": {
+    "getCode": "Code bekijken",
+    "showCode": "Toon code",
+    "copyCode": "Code kopiëren",
+    "copied": "Gekopieerd!",
+    "copyFailed": "Kopiëren mislukt — selecteer de code handmatig",
+    "goToStore": "Naar {store}",
+    "getDeal": "Deal bekijken",
+    "openDeal": "Bekijk deal",
+    "close": "Sluiten",
+    "visitStore": "Bezoek winkel",
+    "readMore": "Lees verder",
+    "backHome": "Terug naar home",
+    "browseStores": "Bekijk alle winkels",
+    "loadMore": "Meer laden"
+  },
+  "header": {
+    "brandTagline": "Kortingscodes & deals",
+    "menuOpen": "Menu openen",
+    "menuClose": "Menu sluiten",
+    "language": "Taal",
+    "searchAria": "Doorzoek het aanbod",
+    "navLabel": "Menu",
+    "switchTo": { "en": "Switch to English", "nl": "Overschakelen naar Nederlands" },
+    "nav": {
+      "home": "Home",
+      "stores": "Winkels",
+      "categories": "Categorieën",
+      "coupons": "Kortingscodes",
+      "deals": "Deals",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  },
+  "searchResults": {
+    "title": "Zoekresultaten",
+    "showingFor": "Resultaten voor",
+    "stores": "Winkels",
+    "coupons": "Kortingscodes",
+    "deals": "Deals",
+    "allResults": "Alle resultaten",
+    "viewAllStores": "Bekijk alle winkels",
+    "viewAllCoupons": "Bekijk alle kortingscodes",
+    "viewAllDeals": "Bekijk alle deals",
+    "emptyQuery": "Vul een zoekterm in om winkels, kortingscodes en deals te vinden.",
+    "empty": "Geen winkels, kortingscodes of deals gevonden voor deze zoekterm.",
+    "resultsCount": "{count} resultaten"
+  },
+  "footer": {
+    "aboutTitle": "Over PrimeKortingscode",
+    "aboutText": "PrimeKortingscode bundelt kortingscodes, acties en deals van webwinkels op één overzichtelijke plek.",
+    "discoverTitle": "Ontdek",
+    "categoriesTitle": "Populaire categorieën",
+    "helpTitle": "Hulp & info",
+    "contact": "Contact",
+    "privacy": "Privacybeleid",
+    "legalTitle": "Juridisch",
+    "disclaimer": "Kortingscodes en deals zijn afkomstig van winkels en partners. Controleer altijd de voorwaarden bij de winkel.",
+    "rights": "Alle rechten voorbehouden.",
+    "demoNote": "Dit is een demo-frontend met fictieve data."
+  },
+  "newsletter": {
+    "eyebrow": "Blijf op de hoogte",
+    "title": "Bespaar als eerste",
+    "description": "Ontdek de nieuwste kortingscodes en deals. Aanmelden is in deze demo nog niet beschikbaar.",
+    "placeholder": "jouw@email.nl",
+    "submit": "Aanmelden",
+    "consent": "Demoformulier — je e-mailadres wordt niet verzonden.",
+    "success": "Nieuwsbrief aanmelden is niet beschikbaar in deze demo.",
+    "error": "Vul een geldig e-mailadres in.",
+    "demoHint": "Demo — er wordt geen e-mail verstuurd."
+  },
+  "filters": {
+    "sortLabel": "Sorteren",
+    "popular": "Populair",
+    "newest": "Nieuwste",
+    "expiring": "Bijna verlopen",
+    "title": "A–Z",
+    "all": "Alles",
+    "filterLabel": "Filters"
+  },
+  "pagination": {
+    "label": "Paginering",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "page": "Pagina",
+    "of": "van",
+    "current": "Huidige pagina"
+  },
+  "breadcrumb": {
+    "label": "Kruimelpad"
+  },
+  "alphabet": {
+    "label": "Filter op eerste letter"
+  },
+  "home": {
+    "hero": {
+      "badge": "Kortingscodes & deals",
+      "title": "Bespaar bij je favoriete webwinkels",
+      "subtitle": "Van mode tot elektronica: ontdek kortingscodes en deals van winkels in één overzicht.",
+      "popular": "Populair:",
+      "trust1": "Kortingscodes & deals",
+      "trust2": "Altijd gratis",
+      "trust3": "Direct te gebruiken"
+    },
+    "storesTitle": "Populaire winkels",
+    "storesSubtitle": "Ontdek winkels met kortingscodes en deals",
+    "categoriesTitle": "Populaire categorieën",
+    "categoriesSubtitle": "Direct naar het aanbod dat bij je past",
+    "couponsTitle": "Populaire kortingscodes",
+    "couponsSubtitle": "Bekijk aanbiedingen met een kortingscode",
+    "dealsTitle": "Nieuwste deals",
+    "dealsSubtitle": "Vers aangeboden, zonder code direct te gebruiken",
+    "blogTitle": "Bespaartips & inspiratie",
+    "blogSubtitle": "Artikelen om meer uit je aankopen te halen"
+  },
+  "stores": {
+    "title": "Alle winkels",
+    "description": "Bekijk alle winkels met kortingscodes en deals, van A tot Z. Zoek eenvoudig op naam en profiteer direct van het aanbod.",
+    "searchPlaceholder": "Zoek een winkel",
+    "popularTitle": "Populaire winkels",
+    "allTitle": "Alle winkels",
+    "empty": "Geen winkels gevonden. Probeer een andere zoekterm.",
+    "offers": "Actieve codes",
+    "offersOne": "1 actieve code",
+    "offersMany": "{n} actieve codes",
+    "metaTitle": "Winkels met kortingscodes & deals"
+  },
+  "store": {
+    "about": "Over {store}",
+    "couponsTitle": "Kortingscodes",
+    "couponsIntro": "Gebruik een code uit dit overzicht tijdens het afrekenen.",
+    "dealsTitle": "Deals",
+    "dealsIntro": "Aanbiedingen die je met één klik claimt — zonder code.",
+    "categoriesTitle": "Categorieën",
+    "relatedTitle": "Vergelijkbare winkels",
+    "faqTitle": "Veelgestelde vragen over {store}",
+    "visit": "Naar {store}",
+    "noCoupons": "Op dit moment zijn er geen actieve kortingscodes voor deze winkel.",
+    "noDeals": "Op dit moment zijn er geen actieve deals voor deze winkel.",
+    "activeOffers": "Actief aanbod"
+  },
+  "categories": {
+    "title": "Alle categorieën",
+    "description": "Ontdek winkels, kortingscodes en deals per categorie — van mode en elektronica tot reizen en energie.",
+    "searchPlaceholder": "Zoek een categorie",
+    "empty": "Geen categorieën gevonden. Probeer een andere zoekterm.",
+    "storesCount": "winkels",
+    "codesCount": "codes",
+    "offerOne": "aanbieding",
+    "offersMany": "aanbiedingen",
+    "metaTitle": "Categorieën met kortingscodes & deals"
+  },
+  "category": {
+    "about": "Over {category}",
+    "storesTitle": "Winkels in deze categorie",
+    "couponsTitle": "Kortingscodes",
+    "dealsTitle": "Deals",
+    "relatedTitle": "Vergelijkbare categorieën",
+    "noStores": "Geen winkels in deze categorie.",
+    "noCoupons": "Geen actieve kortingscodes in deze categorie.",
+    "noDeals": "Geen actieve deals in deze categorie."
+  },
+  "coupons": {
+    "title": "Kortingscodes",
+    "description": "Alle actuele kortingscodes van Nederlandse en internationale webwinkels. Bekijk de code, kopieer hem en bespaar bij het afrekenen.",
+    "empty": "Geen kortingscodes gevonden met deze filters.",
+    "howToTitle": "Zo werkt een kortingscode",
+    "howToSteps": {
+      "step1": "Kies een code en klik op “Code bekijken”.",
+      "step2": "Kopieer de code met één klik.",
+      "step3": "Plak de code in de winkelwagen en bespaar."
+    },
+    "termsTitle": "Voorwaarden",
+    "aboutTitle": "Over deze code",
+    "usedTimes": "{n} keer gebruikt",
+    "metaTitle": "Kortingscodes & actiecodes"
+  },
+  "coupon": {
+    "modalTitle": "Je kortingscode",
+    "modalSubtitle": "Klik op de code om te kopiëren",
+    "codeLabel": "Kortingscode",
+    "dealNotice": "Dit is een deal — je hebt geen code nodig."
+  },
+  "deals": {
+    "title": "Deals & aanbiedingen",
+    "description": "Ontdek de nieuwste deals zonder kortingscode. Eén klik en je gaat direct naar de aanbieding in de webwinkel.",
+    "empty": "Geen deals gevonden met deze filters.",
+    "metaTitle": "Deals & aanbiedingen"
+  },
+  "deal": {
+    "aboutTitle": "Over deze deal",
+    "termsTitle": "Voorwaarden"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Bespaartips, koopgidsen en het laatste nieuws rondom winkelen, kortingen en slimme aankopen.",
+    "readMore": "Lees verder",
+    "by": "Door {author}",
+    "minRead": "{n} min lezen",
+    "published": "Gepubliceerd",
+    "tags": "Tags",
+    "related": "Gerelateerde artikelen",
+    "latest": "Nieuwste artikelen",
+    "empty": "Nog geen artikelen beschikbaar.",
+    "backToList": "Terug naar het blog"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Vragen, suggesties of een melding over een niet-werkende code? Gebruik het e-mailadres hieronder. Het formulier is een demo en verstuurt niets.",
+    "emailTitle": "E-mail",
+    "responseTitle": "Contactmethode",
+    "responseValue": "E-mail",
+    "formTitle": "Stuur een bericht",
+    "name": "Naam",
+    "email": "E-mailadres",
+    "message": "Bericht",
+    "submit": "Versturen",
+    "success": "Bericht versturen is niet beschikbaar in deze demo.",
+    "errorRequired": "Vul dit veld in.",
+    "errorEmail": "Vul een geldig e-mailadres in.",
+    "demoHint": "Demo — het formulier verstuurt nog niets.",
+    "topicsTitle": "Waarvoor kun je bij ons terecht?",
+    "topics": [
+      "Een kortingscode melden die niet werkt",
+      "Een nieuwe winkel of code voorstellen",
+      "Samenwerken of adverteren",
+      "Vragen over privacy of gegevens"
+    ]
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "description": "Lees wat deze demo met formuliergegevens doet en hoe externe links werken.",
+    "lastUpdated": "Laatst bijgewerkt",
+    "sections": [
+      {
+        "heading": "Welke gegevens we verwerken",
+        "body": "De contact- en nieuwsbrief formulieren valideren alleen in je browser. In deze demo worden de ingevulde naam, het e-mailadres en bericht niet naar een backend verstuurd of door de app opgeslagen. De hostingomgeving kan technische verzoekgegevens verwerken; controleer het beleid van de beheerder van de betreffende installatie."
+      },
+      {
+        "heading": "Cookies en statistieken",
+        "body": "Deze frontend configureert geen analyse- of marketingdiensten. De hostingomgeving kan eigen technische cookies of logs gebruiken; dat valt buiten deze demo-app. Externe winkels kunnen hun eigen cookies plaatsen nadat je hun website opent."
+      },
+      {
+        "heading": "Externe links en winkels",
+        "body": "Kortingscodes en deals linken door naar de website van de winkel. Zodra je op zo'n link klikt, geldt het privacybeleid van die winkel. Wij hebben geen invloed op hoe externe partijen met je gegevens omgaan; bekijk hun beleid voordat je gegevens achterlaat."
+      },
+      {
+        "heading": "Nieuwsbrief",
+        "body": "De nieuwsbriefinschrijving is in deze demo niet aangesloten. De browser controleert alleen het e-mailadres; er wordt geen inschrijving verzonden of mailinglijst bijgewerkt. Werk deze tekst bij wanneer een nieuwsbriefprovider wordt aangesloten."
+      },
+      {
+        "heading": "Jouw rechten",
+        "body": "Je kunt contact opnemen via het e-mailadres op de contactpagina. Dit demoformulier verstuurt geen verzoek en deze frontend belooft geen verwerkingstermijn. De beheerder van een productie-installatie moet deze informatie aanpassen aan de daadwerkelijke gegevensverwerking."
+      }
+    ]
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "description": "De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar home of zoek direct een winkel of categorie.",
+    "hint": "Probeer:"
+  }
+}
