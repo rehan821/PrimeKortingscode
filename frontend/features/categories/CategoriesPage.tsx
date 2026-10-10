@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
 import { CategoryIcon } from "@/components/category/CategoryIcon";
+import { pathFor } from "@/lib/routes";
 
 export type CategorySearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -482,12 +483,50 @@ const ALL_CATEGORY_GROUPS: CategoryGroup[] = [
 /* ========================================================================
  *  HELPER: Build a locale-aware path
  * ===================================================================== */
+
+/**
+ * Slug used by the static taxonomy below → the real slug in
+ * `data/mock/categories`.
+ *
+ * The static list was written against a different (RetailMeNot-style)
+ * taxonomy, so most of its slugs no longer exist. Resolving every href through
+ * this map is what keeps the categories page free of 404s: `proxy.ts` rewrites
+ * any unknown detail slug onto the not-found page.
+ */
+const STATIC_SLUG_TO_CATEGORY: Record<string, string> = {
+  auto: "auto",
+  beauty: "schoonheid",
+  books: "boeken",
+  electronics: "elektronica",
+  entertainment: "boeken",
+  fashion: "mode",
+  finance: "verzekeringen",
+  food: "eten-drinken",
+  garden: "tuin",
+  health: "schoonheid",
+  home: "huis-inrichting",
+  kids: "baby-kind",
+  marketplace: "warenhuizen",
+  pets: "dieren",
+  software: "software",
+  sport: "sport",
+  toys: "speelgoed",
+  travel: "reizen",
+};
+
+/**
+ * Resolves a href from the static taxonomy into a real URL.
+ *
+ * `pathFor` owns the locale prefix, so English links get `/en/categories/…`
+ * — the previous string replacement only swapped `/categorieen` for
+ * `/categories`, which is a Dutch route, so English links 404'd too.
+ *
+ * An unmapped slug falls back to the categories index rather than 404ing.
+ */
 function hrefFor(locale: Locale, path: string): string {
-  if (locale === "en") {
-    // Replace /categorieen with /categories for English
-    return path.replace("/categorieen", "/categories");
-  }
-  return path;
+  const slug = path.split("/").filter(Boolean).pop() ?? "";
+  const category = STATIC_SLUG_TO_CATEGORY[slug];
+  return pathFor(locale, category ? "category" : "categories", category);
 }
 
 /* ========================================================================
