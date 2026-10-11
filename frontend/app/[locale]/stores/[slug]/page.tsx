@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function StoreDetailRoute({ params }: PageProps) {
   const { locale, slug } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <StoreDetailPage locale={locale} dict={dict} slug={slug} />;
 }

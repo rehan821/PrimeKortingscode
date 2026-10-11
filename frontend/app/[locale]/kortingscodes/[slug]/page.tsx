@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CouponDetailRoute({ params }: PageProps) {
   const { locale, slug } = await params;
-  if (!isLocale(locale) || locale !== "nl") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <CouponDetailPage locale={locale} dict={dict} slug={slug} />;
 }

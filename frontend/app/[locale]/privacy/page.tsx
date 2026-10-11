@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function PrivacyRoute({ params }: PageProps) {
   const { locale } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <PrivacyPage locale={locale} dict={dict} />;
 }

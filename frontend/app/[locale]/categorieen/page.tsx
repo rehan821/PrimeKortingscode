@@ -32,7 +32,7 @@ export async function generateMetadata({
 
 export default async function CategoriesRoute({ params, searchParams }: PageProps) {
   const { locale } = await params;
-  if (!isLocale(locale) || locale !== "nl") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <CategoriesPage locale={locale} dict={dict} searchParams={searchParams} />;
 }

@@ -42,7 +42,7 @@ export default function CategoryDetailRoute({ params, searchParams }: PageProps)
 
 async function CategoryDetailRouteContent({ params, searchParams }: PageProps) {
   const { locale, slug } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <CategoryDetailPage locale={locale} dict={dict} slug={slug} searchParams={searchParams} />;
 }

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Pick<PageProps, "params">): P
 
 export default async function EnglishSearchRoute({ params, searchParams }: PageProps) {
   const { locale } = await params;
-  if (!isLocale(locale) || locale !== "en") notFound();
+  if (!isLocale(locale)) notFound();
   const dict = await getDictionary(locale);
   return <SearchResultsPage locale={locale} dict={dict} searchParams={searchParams} />;
 }

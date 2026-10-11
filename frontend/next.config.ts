@@ -33,6 +33,14 @@ const nextConfig: NextConfig = {
     return [
       { source: "/nl", destination: "/", permanent: true },
       { source: "/nl/:path*", destination: "/:path*", permanent: true },
+      // English-template path names opened under the Dutch root (or via the
+      // /nl strip above) land on the real Dutch page instead of a 404.
+      { source: "/stores/:slug*", destination: "/winkels/:slug*", permanent: true },
+      { source: "/categories/:slug*", destination: "/categorieen/:slug*", permanent: true },
+      { source: "/coupons/:slug*", destination: "/kortingscodes/:slug*", permanent: true },
+      { source: "/search", destination: "/zoeken", permanent: true },
+      { source: "/privacy", destination: "/privacybeleid", permanent: true },
+      { source: "/sign-in", destination: "/inloggen", permanent: true },
     ];
   },
   async rewrites() {
