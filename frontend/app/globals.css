@@ -132,9 +132,11 @@
   .article-body strong { color: var(--color-ink-900); }
 }
 
-/* Sign-in page: minimal auth chrome — the page renders its own purple brand
-   bar and copyright line instead of the site header/footer. Unlayered on
-   purpose: these must beat the utility classes the shared chrome carries. */
-body:has(.signin-page) header,
-body:has(.signin-page) footer { display: none !important; }
-.signin-page { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+/* Sign-in page chrome: the site navbar (with the Sign in button) stays
+   visible; only the heavy site footer is replaced by the page's own
+   copyright line. The footer rule targets the direct child of <body> so the
+   page's inner <footer> still renders. Unlayered on purpose: these must beat
+   the utility classes the shared chrome carries. */
+body:has(.signin-page) > footer { display: none !important; }
+body:has(.signin-page) > main { display: flex; flex-direction: column; }
+.signin-page { flex: 1; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }

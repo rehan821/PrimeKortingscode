@@ -71,26 +71,6 @@ export async function HomePage({ locale, dict }: HomePageProps) {
         {locale === "nl" ? "Als je via links op deze website iets koopt, kunnen wij een commissie ontvangen." : "We may earn a commission when you buy through links on this site."}
       </p>
 
-      {/* Sign-in / sign-up call to action — homepage only. */}
-      <div className="home-shell pb-1">
-        <div className="flex flex-col items-center gap-3 rounded-2xl bg-brand-50 px-5 py-4 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
-          <div>
-            <p className="text-[15px] font-bold text-ink-900">
-              {locale === "nl" ? "Inloggen of registreren" : "Log in or Sign up"}
-            </p>
-            <p className="mt-0.5 text-sm text-ink-600">
-              {locale === "nl" ? "Bewaar je favoriete winkels en mis geen enkele deal." : "Save your favourite stores and never miss a deal."}
-            </p>
-          </div>
-          <Link
-            href={pathFor(locale, "signin")}
-            className="inline-flex h-11 shrink-0 items-center rounded-full bg-brand-600 px-6 text-sm font-bold text-white transition-colors hover:bg-brand-700"
-          >
-            {locale === "nl" ? "Doorgaan" : "Sign up / Log in"}
-          </Link>
-        </div>
-      </div>
-
       {/* Feature cards */}
       <section className="bg-white" aria-labelledby="home-featured">
         <div className="home-shell pb-12 pt-2 sm:pb-16">

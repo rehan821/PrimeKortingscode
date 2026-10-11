@@ -48,6 +48,7 @@
     "language": "Language",
     "searchAria": "Search offers",
     "navLabel": "Menu",
+    "signIn": "Sign in",
     "switchTo": { "en": "Switch to English", "nl": "Switch to Dutch" },
     "nav": {
       "home": "Home",

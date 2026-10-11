@@ -12,6 +12,7 @@ import { NavLinks } from "./NavLinks";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileNav } from "./MobileNav";
 import { SearchForm } from "@/components/search/SearchForm";
+import { UserIcon } from "@/components/ui/icons";
 import { pathFor } from "@/lib/routes";
 import type { NavigationMenus } from "./NavLinks";
 
@@ -102,6 +103,13 @@ export async function Header({ locale, dict }: HeaderProps) {
           </div>
 
           <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0">
+            <Link
+              href={pathFor(locale, "signin")}
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-white px-2.5 text-[11px] font-bold text-brand-700 transition hover:bg-white/90 sm:px-4 sm:text-xs"
+            >
+              <UserIcon size={16} />
+              {dict.header.signIn}
+            </Link>
             <LanguageSwitcher
               locale={locale}
               label={dict.header.switchTo[target]}

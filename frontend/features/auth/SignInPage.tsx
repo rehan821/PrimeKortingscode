@@ -4,15 +4,15 @@ import { useEffect, useRef, useState, type ClipboardEvent, type FormEvent, type 
 import Link from "next/link";
 import type { Locale } from "@/types";
 import type { Dictionary } from "@/i18n/dictionary";
-import { Logo } from "@/components/layout/Logo";
 import { siteConfig } from "@/config/site";
 import { pathFor } from "@/lib/routes";
 
 /* ============================================================================
  *  Sign-in / Sign-up page — email first, then a one-time code (or password).
  *
- *  Visual pattern follows the reference screens: purple brand bar, centred
- *  card on light grey, pill buttons, six-digit code boxes. Every user-facing
+ *  Visual pattern follows the reference screens: centred card on light grey,
+ *  pill buttons, six-digit code boxes. The site navbar (with the Sign in
+ *  button) and a minimal copyright line provide the page chrome. Every user-facing
  *  string comes from the dictionary (`auth` section), so new locales only
  *  need translated JSON.
  *
@@ -160,13 +160,8 @@ export function SignInPage({ locale, dict, year }: SignInPageProps) {
   /* ------------------------------------------------------------------ chrome */
 
   return (
-    <div className="signin-page flex min-h-screen flex-col bg-[#f5f5f6]">
-      {/* Purple brand bar — replaces the site header on this page. */}
-      <div className="flex h-16 items-center justify-center bg-brand-600 sm:h-20">
-        <Logo locale={locale} tone="dark" className="scale-110 sm:scale-125" />
-      </div>
-
-      <main className="flex-1 px-5 py-8 sm:py-12">
+    <div className="signin-page flex flex-1 flex-col bg-[#f5f5f6]">
+      <div className="flex-1 px-5 py-8 sm:py-12">
         <h1 className="text-center text-[26px] font-bold leading-tight text-ink-950 sm:text-4xl">
           {t.heading}
         </h1>
@@ -445,7 +440,7 @@ export function SignInPage({ locale, dict, year }: SignInPageProps) {
             ) : null}
           </div>
         </div>
-      </main>
+      </div>
 
       {/* Minimal copyright line — replaces the site footer on this page. */}
       <footer className="border-t border-ink-200 bg-[#f5f5f6] py-6 text-center text-sm text-ink-500">
